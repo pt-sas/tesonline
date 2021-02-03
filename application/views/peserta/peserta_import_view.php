@@ -16,7 +16,7 @@
         <div class="col-md-12">
             <div class="callout callout-info">
                 <h4>Informasi</h4>
-                <p>Data siswa yang di import adalah data yang akan digunakan siswa untuk memulai tes atau ujian. Form data siswa dapat di Download di menu Download yang ada di pojok kanan kotak dialog.</p>
+                <p>Data peserta yang di import adalah data yang akan digunakan peserta untuk memulai tes. Form data peserta dapat di Download di menu Download yang ada di pojok kanan kotak dialog.</p>
                 <p>Pastikan terlebih dahulu data Group sudah terdaftar sebelum melakukan Import Data</p>
             </div>
         </div>
@@ -29,7 +29,7 @@
     					<div class="box-title">Import Peserta</div>
     					<div class="box-tools pull-right">
 							<div class="dropdown pull-right">
-								<a href="<?php echo base_url(); ?>public/form/form-data-siswa.xls">Download Form Import Siswa</a>
+								<a href="<?php echo base_url(); ?>public/form/form-data-siswa.xls">Download Form Import Peserta</a>
     						</div>
     					</div>
                     </div><!-- /.box-header -->
