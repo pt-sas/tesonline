@@ -76,14 +76,14 @@
         $('#form-login').submit(function(){
             $("#modal-proses").modal('show');
                 $.ajax({
-                    url:"<?php echo site_url(); ?>/manager/welcome/login",
+                    url:"<?php echo site_url(); ?>manager/welcome/login",
      			    type:"POST",
      			    data:$('#form-login').serialize(),
      			    cache: false,
       		        success:function(respon){
          		    	var obj = $.parseJSON(respon);
       		            if(obj.status==1){
-      		                window.open("<?php echo site_url(); ?>/manager/dashboard","_self");
+      		                window.open("<?php echo site_url(); ?>manager/dashboard","_self");
           		        }else{
                             $('#form-pesan').html(pesan_err(obj.error));
                             $("#modal-proses").modal('hide');

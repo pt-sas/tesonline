@@ -74,7 +74,7 @@
 		$('#form-login').submit(function() {
 			$("#modal-proses").modal('show');
 			$.ajax({
-				url: "<?php echo site_url(); ?>/welcome/login",
+				url: "<?php echo site_url(); ?>welcome/login",
 				type: "POST",
 				data: $('#form-login').serialize(),
 				cache: false,
@@ -83,7 +83,7 @@
 					console.log(obj)
 					//   console.log(<?php echo site_url(); ?>)
 					if (obj.status == 1) {
-						window.open("<?php echo site_url(); ?>/tes_dashboard", "_self");
+						window.open("<?php echo site_url(); ?>tes_dashboard", "_self");
 					} else {
 						$('#form-pesan').html(pesan_err(obj.error));
 						$("#modal-proses").modal('hide');
