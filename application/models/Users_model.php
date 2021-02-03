@@ -176,7 +176,7 @@ class Users_model extends CI_Model{
                 
                 $menu = $menu.'
                     <li class="treeview '.$parent_active.'">
-                        <a href="'.site_url().$parent->url.'">
+                        <a href="'.site_url().'/'.$parent->url.'">
         					<i class="'.$parent->icon.'"></i>
         					<span>'.$parent->nama_menu.'</span>';
                 if($menu_child_count>0){
