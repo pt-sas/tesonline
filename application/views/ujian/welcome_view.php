@@ -3,7 +3,7 @@
 	<section class="content-header">
 		<h1>
 			<?//php if(!empty($site_name)){ echo $site_name; } ?>
-			<small>Rekruitmen Online PT. Sahabat Abadi Sejahtera</small>
+			<small>Rekrutmen Online PT. Sahabat Abadi Sejahtera</small>
 		</h1>
 		<ol class="breadcrumb">
 			<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -19,7 +19,7 @@
 		<div class="row">
 			<div class="login-box">
 				<div class="login-logo">
-					<b>User Login</b>
+					<b>Login Peserta</b>
 				</div><!-- /.login-logo -->
 				<div class="login-box-body">
 					<p class="login-box-msg">Masukkan Username dan Password</p>
