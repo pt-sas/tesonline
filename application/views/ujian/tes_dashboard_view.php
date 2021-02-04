@@ -2,8 +2,8 @@
 	<!-- Content Header (Page header) -->
     <section class="content-header">
     	<h1>
-    		SELAMAT DATANG <?php if(!empty($nama)){ echo $nama; } if(!empty($group)){ echo ' | '.$group; } ?>
-            <small>Rekruitmen Online PT. Sahabat Abadi Sejahtera</small>
+    		Selamat Datang,  <?php if(!empty($nama)){ echo $nama; } if(!empty($group)){ echo ' ('.$group. ')';} ?>
+            <small>Rekrutmen Online PT. Sahabat Abadi Sejahtera</small>
         </h1>
         <ol class="breadcrumb">
         	<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
