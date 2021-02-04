@@ -430,7 +430,7 @@ class Tes_dashboard extends Tes_Controller {
 	            	}
 	            }else{
 	            	$record[] = '';
-	            	$record[] = '<a href="'.site_url().''.$this->url.'/konfirmasi_test/'.$temp->tes_id.'" style="cursor: pointer;" class="btn btn-success btn-xs">Kerjakan</a>';
+	            	$record[] = '<a href="'.site_url().$this->url.'/konfirmasi_test/'.$temp->tes_id.'" style="cursor: pointer;" class="btn btn-success btn-xs">Kerjakan</a>';
 	            }
 
 				$output['aaData'][] = $record;

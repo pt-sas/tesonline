@@ -75,9 +75,9 @@
                         if(obj.status==1){
                             $("#modal-proses").modal('hide');
                             $('#form-pesan').html('');
-                            window.open("<?php echo site_url(); ?>/tes_kerjakan/index/"+obj.tes_id, "_self");
+                            window.open("<?php echo site_url(); ?>tes_kerjakan/index/"+obj.tes_id, "_self");
                         }else if(obj.status==2){
-                            window.open("<?php echo site_url().'/'.$url; ?>/", "_self");
+                            window.open("<?php echo site_url().$url; ?>/", "_self");
                         }else{
                             $("#modal-proses").modal('hide');
                             $('#form-pesan').html(pesan_err(obj.pesan));
@@ -86,7 +86,7 @@
                     statusCode: {
                         500: function(respon) {
                             $("#modal-proses").modal('hide');
-                            $('#form-pesan').html(pesan_err('Terjadi kesalahan pada persiapan Tes. Silahkan hubungi petugas.'));
+                            $('#form-pesan').html(pesan_err('Terjadi kesalahan pada persiapan Tes. Silahkan hubungi HRD.'));
                         }
                     },
                     error: function(xmlhttprequest, textstatus, message) {
