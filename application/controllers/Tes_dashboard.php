@@ -411,7 +411,7 @@ class Tes_dashboard extends Tes_Controller {
 	            		// nilai kosong karena masih dalam pengerjaan
 	            		$record[] = '';
 	            		// Jika masih dalam waktu pengerjaan, maka tes dilanjutkan
-	            		$record[] = '<a href="'.site_url().'/tes_kerjakan/index/'.$temp->tes_id.'" style="cursor: pointer;" class="btn btn-default btn-xs">Lanjutkan</a>';
+	            		$record[] = '<a href="'.site_url().'tes_kerjakan/index/'.$temp->tes_id.'" style="cursor: pointer;" class="btn btn-default btn-xs">Lanjutkan</a>';
 	            	}else{
 	            		// menampilkan nilai
 	            		// Cek apakah tes yang selesai ditampilkan nilainya
@@ -423,14 +423,14 @@ class Tes_dashboard extends Tes_Controller {
 
 	            		// mengecek apakah detail tes ditampilkan
 	            		if($temp->tes_detail_to_users==1){
-	            			$record[] = '<a href="'.site_url().'/tes_hasil_detail/index/'.$query_test_user->tesuser_id.'" style="cursor: pointer;" class="btn btn-default btn-xs">Lihat Detail</a>';
+	            			$record[] = '<a href="'.site_url().'tes_hasil_detail/index/'.$query_test_user->tesuser_id.'" style="cursor: pointer;" class="btn btn-default btn-xs">Lihat Detail</a>';
 	            		}else{
 	            			$record[] = '';
 	            		}
 	            	}
 	            }else{
 	            	$record[] = '';
-	            	$record[] = '<a href="'.site_url().'/'.$this->url.'/konfirmasi_test/'.$temp->tes_id.'" style="cursor: pointer;" class="btn btn-success btn-xs">Kerjakan</a>';
+	            	$record[] = '<a href="'.site_url().''.$this->url.'/konfirmasi_test/'.$temp->tes_id.'" style="cursor: pointer;" class="btn btn-success btn-xs">Kerjakan</a>';
 	            }
 
 				$output['aaData'][] = $record;
