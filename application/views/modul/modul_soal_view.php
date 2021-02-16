@@ -266,7 +266,7 @@
                                 <input type="hidden" name="hapus-id" id="hapus-id">
                                 <div id="hapus-soal"  style="max-height: 250px;overflow: auto;"></div>
                             </div>
-                            <p>Perhatian, soal yang dihapus akan membuat daftar jawaban ikut terhapus.</p>
+                            <p style="color: red">Perhatian, soal yang dihapus akan membuat daftar jawaban ikut terhapus.</p>
                         </div>
                     </div>
                 </div>
