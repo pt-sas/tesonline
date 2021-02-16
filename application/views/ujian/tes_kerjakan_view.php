@@ -54,7 +54,7 @@
                     <p class="help-block">Soal yang sudah dijawab akan berwarna Biru.</p>
                 </div><!-- /.box-body -->
                 <div class="box-footer">
-                    <button class="btn btn-danger pull-right" id="btn-hentikan">Hentikan Tes</button>
+                    <button class="btn btn-success pull-right" id="btn-hentikan">Kumpulkan</button>
                 </div>
             </div><!-- /.box -->
         </div>
@@ -100,8 +100,8 @@
                     </div>
                 </div>
 				<div class="box-footer">
-					<button type="submit" id="tambah-simpan" class="btn btn-danger">Hentikan Tes</button>
-					<a href="#" class="btn btn-default" data-dismiss="modal">Close</a>
+					<button type="submit" id="tambah-simpan" class="btn btn-success">Kumpulkan</button>
+					<a href="#" class="btn btn-danger" data-dismiss="modal">Close</a>
 				</div>
             </div>
         </div>
@@ -315,7 +315,8 @@
                 $('#hentikan-tes-id').val(data.tes_id);
                 $('#hentikan-tes-user-id').val(data.tes_user_id);
                 $('#hentikan-tes-nama').val(data.tes_nama);
-                $('#hentikan-dijawab').val(data.tes_dijawab+" dijawab. "+data.tes_blum_dijawab+" belum dijawab.");
+                // $('#hentikan-dijawab').val(data.tes_dijawab+" dijawab. "+data.tes_blum_dijawab+" belum dijawab.");
+                $('#hentikan-dijawab').val(data.tes_blum_dijawab+" belum dijawab.").css('color', 'red');
                 $('#hentikan-belum-dijawab').val(data.tes_blum_dijawab);
 
 
