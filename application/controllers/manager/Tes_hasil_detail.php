@@ -45,7 +45,7 @@ class Tes_hasil_detail extends Member_Controller {
         		$data['user_nama'] = $query_user->user_firstname;
 
         		$nilai = $this->cbt_tes_soal_model->get_nilai($tesuser_id)->row();
-        		$data['nilai'] = $nilai->hasil.'  /  '.$query_test->tes_max_score.'  (nilai / nilai maksimal) ';
+        		$data['nilai'] = (int)$nilai->hasil.'  /  '.(int)$query_test->tes_max_score.'  (nilai / nilai maksimal) ';
 
         		$data['benar'] = ($nilai->total_soal-$nilai->jawaban_salah).'  /  '.$nilai->total_soal.'  (jawaban benar / total soal)';
 
