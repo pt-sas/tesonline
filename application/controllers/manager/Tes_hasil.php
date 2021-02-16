@@ -232,7 +232,9 @@ class Tes_hasil extends Member_Controller {
 			if(empty($temp->nilai)){
 				$record[] = '0';
 			}else{
-				$record[] = $temp->nilai;
+				$nilai = $this->cbt_tes_soal_model->get_nilai($temp->tesuser_id)->row();
+				// $record[] = $temp->nilai;
+				$record[] = ($nilai->total_soal-$nilai->jawaban_salah).'  /  '.$nilai->total_soal;
 			}
 			
 			if(empty($temp->tesuser_status)){
