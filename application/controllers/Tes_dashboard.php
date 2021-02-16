@@ -80,8 +80,8 @@ class Tes_dashboard extends Tes_Controller {
 				        $data['url'] = $this->url;
 				        $data['tes_nama'] = $query_tes->tes_nama;
 				        $data['tes_waktu'] = $query_tes->tes_duration_time.' menit';
-				        $data['tes_poin'] = $query_tes->tes_score_right;
-				        $data['tes_max_score'] = $query_tes->tes_max_score;
+				        $data['tes_poin'] = (int)$query_tes->tes_score_right;
+				        $data['tes_max_score'] = (int)$query_tes->tes_max_score;
 				        if($query_tes->tes_token==1){
 				        	$data['tes_token'] = '
 				        		<tr style="height: 45px;">
