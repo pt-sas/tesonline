@@ -69,20 +69,20 @@
                         <div class="form-group">
                             <label class="col-sm-3 control-label">Poin Dasar</label>
                             <div class="col-sm-9">
-                                <input type="text" name="tambah-poin" id="tambah-poin" class="form-control input-sm" value="1.00" />
+                                <input type="text" name="tambah-poin" id="tambah-poin" class="form-control input-sm" value="1" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label">Jawaban Salah</label>
                             <div class="col-sm-9">
-                                <input type="text" name="tambah-poin-salah" id="tambah-poin-salah" class="form-control input-sm" value="0.00" />
+                                <input type="text" name="tambah-poin-salah" id="tambah-poin-salah" class="form-control input-sm" value="0" />
                                 <p class="help-block">Poin untuk jawaban salah</p>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label">Jawaban Kosong</label>
                             <div class="col-sm-9">
-                                <input type="text" name="tambah-poin-kosong" id="tambah-poin-kosong" class="form-control input-sm" value="0.00" />
+                                <input type="text" name="tambah-poin-kosong" id="tambah-poin-kosong" class="form-control input-sm" value="0" />
                                 <p class="help-block">Poin untuk jawaban kosong</p>
                             </div>
                         </div>
@@ -260,9 +260,9 @@
                 $('#tambah-nama-lama').val(data.nama);
                 $('#tambah-deskripsi').val(data.deskripsi);
                 $('#tambah-waktu').val(data.waktu);
-                $('#tambah-poin').val(data.poin);
-                $('#tambah-poin-kosong').val(data.poin_kosong);
-                $('#tambah-poin-salah').val(data.poin_salah);
+                $('#tambah-poin').val(Number(data.poin).toFixed());
+                $('#tambah-poin-kosong').val(Number(data.poin_kosong).toFixed());
+                $('#tambah-poin-salah').val(Number(data.poin_salah).toFixed());
                 $('#tambah-rentang-waktu').val(data.rentang_waktu);
                 if(data.tunjukkan_hasil==1){
                     $('#tambah-tunjukkan-hasil').prop("checked", true);
@@ -309,9 +309,9 @@
         $('#tambah-nama-lama').val('');
         $('#tambah-deskripsi').val('');
         $('#tambah-waktu').val('30');
-        $('#tambah-poin').val('1.00');
-        $('#tambah-poin-kosong').val('0.00');
-        $('#tambah-poin-salah').val('0.00');
+        $('#tambah-poin').val('1');
+        $('#tambah-poin-kosong').val('0');
+        $('#tambah-poin-salah').val('0');
         $('#tambah-rentang-waktu').val('<?php if(!empty($rentang_waktu)){ echo $rentang_waktu; } ?>');
         $('#tambah-group option:selected').removeAttr('selected');
         $('#tambah-acak-jawaban').prop("checked", true);
