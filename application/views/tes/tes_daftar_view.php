@@ -149,7 +149,7 @@
     }
 
     function edit(id){
-        window.open("<?php echo site_url(); ?>/manager/tes_tambah/index/"+id, "_self");
+        window.open("<?php echo site_url(); ?>manager/tes_tambah/index/"+id, "_self");
     }
 
     function hapus(id){

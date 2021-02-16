@@ -181,7 +181,7 @@
     }
 
     function detail_tes(tesuser_id){
-        window.open("<?php echo site_url().'/manager/tes_hasil_detail'; ?>/index/"+tesuser_id);
+        window.open("<?php echo site_url().'manager/tes_hasil_detail'; ?>/index/"+tesuser_id);
     }
 
     function export_excel(){
