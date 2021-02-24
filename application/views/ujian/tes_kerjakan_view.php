@@ -66,14 +66,14 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button class="close" type="button" data-dismiss="modal">&times;</button>
-                    <div id="trx-judul">Konfirmasi Hentikan Tes</div>
+                    <div id="trx-judul">Konfirmasi Kumpulkan Tes</div>
                 </div>
                 <div class="modal-body" >
                     <div class="row-fluid">
                         <div class="box-body">
                             <div id="form-pesan"></div>
                             <div class="callout callout-info">
-                                <p>Apakah anda yakin mengakhiri mata uji ini ?
+                                <p>Apakah anda yakin mengakhiri tes ini ?
 								<br />Jawaban Tes yang sudah selesai tidak dapat diubah.
 								</p>
 								
@@ -92,7 +92,7 @@
                             <div class="form-group">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" id="hentikan-centang" name="hentikan-centang" value="1"> Centang dan klik tombol Hentikan Tes.
+                                        <input type="checkbox" id="hentikan-centang" name="hentikan-centang" value="1"> Centang dan klik tombol Kumpulkan Tes.
                                     </label>
                                 </div>
                             </div>
@@ -423,7 +423,7 @@
                     error: function(xmlhttprequest, textstatus, message) {
                         if(textstatus==="timeout") {
                             $("#modal-proses").modal('hide');
-                            notify_error("Gagal menghentikan Tes, Silahkan Refresh Halaman");
+                            notify_error("Gagal mengumpulkan Tes, Silahkan Refresh Halaman");
                         }else{
                             $("#modal-proses").modal('hide');
                             notify_error(textstatus);
