@@ -127,6 +127,7 @@
                                 <td> </td>
                                 <td> </td>
                                 <td> </td>
+                                <td> </td>
                             </tr>
                         </tbody>
 					</table>                        
@@ -283,6 +284,7 @@
                   "bServerSide": true, 
                   "searching": false,
                   "aoColumns": [
+    					{"bSearchable": false, "bSortable": false, "sWidth":"20px"},
     					{"bSearchable": false, "bSortable": false, "sWidth":"20px"},
     					{"bSearchable": false, "bSortable": false},
                         {"bSearchable": false, "bSortable": false},
