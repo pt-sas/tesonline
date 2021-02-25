@@ -58,7 +58,7 @@ class Cbt_tes_model extends CI_Model{
 	function get_datatable($start, $rows, $kolom, $isi){
 		$this->db->where('('.$kolom.' LIKE "%'.$isi.'%")')
                  ->from($this->table)
-				 ->order_by('tes_id', 'DESC')
+				 ->order_by('tes_begin_time', 'ASC')
                  ->limit($rows, $start);
         return $this->db->get();
 	}
