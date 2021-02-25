@@ -106,6 +106,7 @@
                             <tr>
                                 <th class="all">No.</th>
                                 <th>Waktu Mulai</th>
+                                <th>Waktu Selesai</th>
                                 <th>Waktu</th>
                                 <th>Nama Tes</th>
                                 <th>Group</th>

@@ -44,7 +44,7 @@ class Tes_dashboard extends Tes_Controller {
             	if($tanggal>$tanggal_tes){
             		// jika waktu sudah melebihi waktu ketentuan, maka status tes diubah menjadi 4
             		$data_tes['tesuser_status'] = 4;
-					$data_tes['tesuser_endtime'] = date('Y-m-d H:i:s');
+					$data_tes['tesuser_end_time'] = date('Y-m-d H:i:s');
             		$this->cbt_tes_user_model->update('tesuser_id', $tes->tesuser_id, $data_tes);
             	}
         	}

@@ -87,7 +87,7 @@ class Tes_hasil extends Member_Controller {
             	foreach( $tesuser_id as $kunci => $isi ) {
                     if($isi=="on"){
                     	$data_tes['tesuser_status']=4;
-						$data_tes['tesuser_endtime'] = date('Y-m-d H:i:s');
+						$data_tes['tesuser_end_time'] = date('Y-m-d H:i:s');
             			$this->cbt_tes_user_model->update('tesuser_id', $kunci, $data_tes);
                     }
                 }
@@ -218,9 +218,11 @@ class Tes_hasil extends Member_Controller {
 			$record[] = ++$i;
 			if(empty($temp->tesuser_creation_time)){
 				$record[] = 'Belum memulai tes';
+				$record[] = '';
 				$record[] = '0';
 			}else{
 				$record[] = $temp->tesuser_creation_time;
+				$record[] = $temp->tesuser_end_time;
 				$record[] = $temp->tes_duration_time.' menit';
 			}
 			$record[] = $temp->tes_nama;

@@ -118,7 +118,7 @@ class Tes_kerjakan extends Tes_Controller {
             $centang = $this->input->post('hentikan-centang', TRUE);
             if(!empty($centang)){
                 $data_tes['tesuser_status'] = 4;
-                $data_tes['tesuser_endtime'] = date('Y-m-d H:i:s');
+                $data_tes['tesuser_end_time'] = date('Y-m-d H:i:s');
                 $this->cbt_tes_user_model->update('tesuser_id', $tesuser_id, $data_tes);
 
                 $status['status'] = 1;
