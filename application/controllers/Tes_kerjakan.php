@@ -54,6 +54,7 @@ class Tes_kerjakan extends Tes_Controller {
                     $data['tes_waktu'] = $query_tes->tes_duration_time;
                     $data['tes_dibuat'] = $query_tes->tesuser_creation_time;
                     $data['tanggal'] = $tanggal->format('Y-m-d H:i:s');
+                    $data['waktu_selesai'] =  $query_tes->tes_end_time;
 
                     // Mengambil selisih jam
                     $tanggal_tes = new DateTime($query_tes->tesuser_creation_time);
