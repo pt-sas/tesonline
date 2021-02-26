@@ -38,15 +38,16 @@ class Tes_dashboard extends Tes_Controller {
         	$query_tes = $query_tes->result();
         	$tanggal = new DateTime();
         	foreach ($query_tes as $tes) {
-        		// Cek apakah tes sudah melebihi batas waktu
+				// Cek apakah tes sudah melebihi batas waktu
+				$waktu_selesai = new DateTime($tes->tes_end_time);
             	$tanggal_tes = new DateTime($tes->tesuser_creation_time);
             	$tanggal_tes->modify('+'.$tes->tes_duration_time.' minutes');
-            	if($tanggal>$tanggal_tes){
+            	if($tanggal > $tanggal_tes || $tanggal > $waktu_selesai){
             		// jika waktu sudah melebihi waktu ketentuan, maka status tes diubah menjadi 4
             		$data_tes['tesuser_status'] = 4;
 					$data_tes['tesuser_end_time'] = date('Y-m-d H:i:s');
             		$this->cbt_tes_user_model->update('tesuser_id', $tes->tesuser_id, $data_tes);
-            	}
+            	}				
         	}
         }
 
