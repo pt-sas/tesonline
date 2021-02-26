@@ -234,10 +234,15 @@ class Tes_hasil extends Member_Controller {
 			}
 			if(empty($temp->nilai)){
 				$record[] = '0';
+				$record[] = '0';
 			}else{
 				$nilai = $this->cbt_tes_soal_model->get_nilai($temp->tesuser_id)->row();
+				$jawab = $this->cbt_tes_soal_model->count_by_tesuser_dijawab($temp->tesuser_id)->row();
+				$belumjawab = $this->cbt_tes_soal_model->count_by_tesuser_blum_dijawab($temp->tesuser_id)->row();
+				
 				// $record[] = $temp->nilai;
 				$record[] = ($nilai->total_soal-$nilai->jawaban_salah).'  /  '.$nilai->total_soal;
+				$record[] = $jawab->hasil.'  /  '.$belumjawab->hasil;
 			}
 			
 			if(empty($temp->tesuser_status)){

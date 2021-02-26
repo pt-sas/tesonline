@@ -112,12 +112,14 @@
                                 <th>Group</th>
                                 <th class="all">Nama User</th>
                                 <th>Poin</th>
+                                <th>Jawab / Belum Jawab</th>
                                 <th>Status</th>
                                 <th class="all"></th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
+                                <td> </td>
                                 <td> </td>
                                 <td> </td>
                                 <td> </td>
@@ -285,13 +287,14 @@
                   "searching": false,
                   "aoColumns": [
     					{"bSearchable": false, "bSortable": false, "sWidth":"20px"},
-    					{"bSearchable": false, "bSortable": false, "sWidth":"20px"},
-    					{"bSearchable": false, "bSortable": false},
+    					{"bSearchable": false, "bSortable": false, "sWidth":"100px"},
+    					{"bSearchable": false, "bSortable": false, "sWidth":"100px"},
                         {"bSearchable": false, "bSortable": false},
                         {"bSearchable": false, "bSortable": false},
                         {"bSearchable": false, "bSortable": false},
                         {"bSearchable": false, "bSortable": false},
                         {"bSearchable": false, "bSortable": false},
+                        {"bSearchable": false, "bSortable": false, "sWidth":"135px"},
     					{"bSearchable": false, "bSortable": false, "sWidth":"150px"},
                         {"bSearchable": false, "bSortable": false, "sWidth":"20px"}],
                   "sAjaxSource": "<?php echo site_url().'/'.$url; ?>/get_datatable/",
