@@ -4,6 +4,7 @@
         <h1>
             Tes : <?php if(!empty($tes_name)){ echo $tes_name; } ?>
         </h1>
+        <input type="hidden" name="waktu_selesai" id="waktu_selesai" value="<?php if(!empty($waktu_selesai)){ echo $waktu_selesai; } ?>">
         <div class="breadcrumb">
             <img src="<?php echo base_url(); ?>public/images/zoom.png" style="cursor: pointer;" height="20" onclick="zoomnormal()" title="Klik ukuran font normal" />&nbsp;&nbsp;
             <img src="<?php echo base_url(); ?>public/images/zoom.png" style="cursor: pointer;" height="26" onclick="zoombesar()" title="Klik ukuran font lebih besar" />
@@ -339,7 +340,7 @@
     }
 
     $(function () {
-        var sisa_detik = <?php if(!empty($detik_sisa)){ echo $detik_sisa; } ?>;
+        var sisa_detik = <?php if(!empty($detik_sisa)){ echo $detik_sisa; } ?>;        
         setInterval(function() {
             var sisa_menit = Math.round(sisa_detik/60);
             sisa_detik = sisa_detik-1;
@@ -347,6 +348,23 @@
 
             if(sisa_detik<1){
                 window.location.reload();
+            }
+        }, 1000);
+
+        var waktuSelesai = new Date($('#waktu_selesai').val()).getTime();
+        var x = setInterval(function() {
+            var now = new Date().getTime();
+
+            var distance = waktuSelesai - now;
+
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            if (distance < 0) {
+                clearInterval(x)
+                window.location = '<?php echo site_url('tes_dashboard') ?>';
             }
         }, 1000);
 
