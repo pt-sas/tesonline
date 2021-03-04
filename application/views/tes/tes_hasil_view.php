@@ -196,7 +196,7 @@
 		var status = $('#pilih-status').val();
 		var keterangan = $('#pilih-keterangan').val();
 
-        window.open("<?php echo site_url().'/'.$url; ?>/export/"+tes+"/"+group+"/"+waktu+"/"+urutkan+"/"+status+"/"+keterangan, "_self");
+        window.open("<?php echo site_url().$url; ?>/export/"+tes+"/"+group+"/"+waktu+"/"+urutkan+"/"+status+"/"+keterangan, "_self");
     }
 
     $(function(){
