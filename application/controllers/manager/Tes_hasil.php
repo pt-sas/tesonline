@@ -145,17 +145,25 @@ class Tes_hasil extends Member_Controller {
                 $row = 2;
                 foreach ($query as $temp) {
                     $worksheet->setCellValueByColumnAndRow(0, $row, ($row-1));
-                    $worksheet->setCellValueByColumnAndRow(1, $row, $temp->tesuser_creation_time);
-                    $worksheet->setCellValueByColumnAndRow(2, $row, $temp->tes_nama);
-                    $worksheet->setCellValueByColumnAndRow(3, $row, $temp->user_name);
-                    $worksheet->setCellValueByColumnAndRow(4, $row, stripslashes($temp->user_firstname));
-                    $worksheet->setCellValueByColumnAndRow(5, $row, $temp->grup_nama);
-                    $worksheet->setCellValueByColumnAndRow(6, $row, $temp->nilai);
+                    $worksheet->setCellValueByColumnAndRow(1, $row, $temp->tes_nama);
+                    $worksheet->setCellValueByColumnAndRow(2, $row, stripslashes($temp->user_firstname));
+                    $worksheet->setCellValueByColumnAndRow(3, $row, $temp->tes_duration_time.' menit');
+                    $worksheet->setCellValueByColumnAndRow(4, $row, $temp->tesuser_creation_time);
+                    $worksheet->setCellValueByColumnAndRow(5, $row, $temp->tesuser_end_time);
+                    $worksheet->setCellValueByColumnAndRow(6, $row, $temp->grup_nama);
+                    $worksheet->setCellValueByColumnAndRow(7, $row, (int)$temp->nilai);
 
                     $row++;
                 }
             }
-            $filename='Data Hasil Tes - '.date('Y-m-d H:i').'.xls'; //save our workbook as this file name
+
+			if ($tes_id === 'semua') {
+				$filename='Tes ALL - '.$waktu.'.xls'; //save our workbook as this file name
+			} else {
+				$tes_query = $this->cbt_tes_model->get_by_kolom('tes_id', $tes_id)->row();
+				$filename = $tes_query->tes_nama.' - '.$waktu.'.xls';
+			}
+
             header('Content-Type: application/vnd.ms-excel'); //mime type
             header('Content-Disposition: attachment;filename="'.$filename.'"'); //tell browser what's the file name
             header('Cache-Control: max-age=0'); //no cache
