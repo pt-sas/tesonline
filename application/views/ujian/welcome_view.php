@@ -80,7 +80,7 @@
 				cache: false,
 				success: function(respon) {
 					var obj = $.parseJSON(respon);
-					console.log(obj)
+					// console.log(obj)
 					//   console.log(<?php echo site_url(); ?>)
 					if (obj.status == 1) {
 						window.open("<?php echo site_url(); ?>tes_dashboard", "_self");
