@@ -88,20 +88,6 @@ class Welcome extends CI_Controller
 
 	function check_login()
 	{
-		// $username = $this->input->post('username', TRUE);
-		// $password = $this->input->post('password', TRUE);
-
-		// $login = $this->access_tes->login($username, $password, $this->input->ip_address());
-		// if ($login == 1) {
-		// 	return TRUE;
-		// } else if ($login == 2) {
-		// 	$this->form_validation->set_message('check_login', 'Password yang dimasukkan salah');
-		// 	return FALSE;
-		// } else {
-		// 	$this->form_validation->set_message('check_login', 'Username yang dimasukkan tidak dikenal');
-		// 	return FALSE;
-		// }
-
 		$username = $this->input->post('username', TRUE);
 		$password = $this->input->post('password', TRUE);
 
@@ -109,24 +95,29 @@ class Welcome extends CI_Controller
 
 		if ($login['data'] == 1) {
 			$row = $login['msg'];
-			$end_tes = new DateTime($row->min_end_tes);
-			$NOW = new DateTime();
+			if ($row->max_start_tes !== null || $row->min_end_tes !== null) {
+				$end_tes = new DateTime($row->min_end_tes);
+				$NOW = new DateTime();
 
-			$query = $this->cbt_konfigurasi_model->get_by_kolom_limit('konfigurasi_kode', 'cbt_waktu_login', 1);
-			$time = $query->row()->konfigurasi_isi;
-			$start_tes = new DateTime(date('Y-m-d H:i', strtotime($time . ' minutes', strtotime($row->max_start_tes))));
+				$query = $this->cbt_konfigurasi_model->get_by_kolom_limit('konfigurasi_kode', 'cbt_waktu_login', 1);
+				$time = $query->row()->konfigurasi_isi;
+				$start_tes = new DateTime(date('Y-m-d H:i', strtotime($time . ' minutes', strtotime($row->max_start_tes))));
 
-			if ($NOW >= $start_tes && $NOW <= $end_tes) {
-				$this->session->set_userdata('cbt_tes_user_id', $row->user_name);
-				$this->session->set_userdata('cbt_tes_nama', stripslashes($row->user_firstname));
-				$this->session->set_userdata('cbt_tes_group', $row->grup_nama);
-				$this->session->set_userdata('cbt_tes_group_id', $row->grup_id);
-				return TRUE;
-			} else if ($NOW < $start_tes) {
-				$this->form_validation->set_message('check_login', 'Tes belum dimulai');
-				return FALSE;
+				if ($NOW >= $start_tes && $NOW <= $end_tes) {
+					$this->session->set_userdata('cbt_tes_user_id', $row->user_name);
+					$this->session->set_userdata('cbt_tes_nama', stripslashes($row->user_firstname));
+					$this->session->set_userdata('cbt_tes_group', $row->grup_nama);
+					$this->session->set_userdata('cbt_tes_group_id', $row->grup_id);
+					return TRUE;
+				} else if ($NOW < $start_tes) {
+					$this->form_validation->set_message('check_login', 'Tes belum dimulai');
+					return FALSE;
+				} else {
+					$this->form_validation->set_message('check_login', 'Waktu tes sudah berakhir');
+					return FALSE;
+				}
 			} else {
-				$this->form_validation->set_message('check_login', 'Waktu tes sudah berakhir');
+				$this->form_validation->set_message('check_login', 'Maaf, anda tidak memiliki akses');
 				return FALSE;
 			}
 		} else if ($login['data'] == 2) {
