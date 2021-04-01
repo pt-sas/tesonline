@@ -147,6 +147,7 @@ class Tes_hasil extends Member_Controller
 				$query = $query->result();
 				$row = 2;
 				foreach ($query as $temp) {
+					$nilai = $this->cbt_tes_soal_model->get_nilai($temp->tesuser_id)->row();
 					$jawab = $this->cbt_tes_soal_model->count_by_tesuser_dijawab($temp->tesuser_id)->row();
 					$notJawab = $this->cbt_tes_soal_model->count_by_tesuser_blum_dijawab($temp->tesuser_id)->row();
 
@@ -158,7 +159,8 @@ class Tes_hasil extends Member_Controller
 					$worksheet->setCellValueByColumnAndRow(5, $row, $temp->tesuser_end_time);
 					$worksheet->setCellValueByColumnAndRow(6, $row, $temp->grup_nama);
 					$worksheet->setCellValueByColumnAndRow(7, $row, $jawab->hasil . '  /  ' . $notJawab->hasil);
-					$worksheet->setCellValueByColumnAndRow(8, $row, (int)$temp->nilai);
+					$worksheet->setCellValueByColumnAndRow(8, $row, ($nilai->total_soal - $nilai->jawaban_salah) . '  /  ' . $nilai->total_soal);
+					$worksheet->setCellValueByColumnAndRow(9, $row, (int)$temp->nilai);
 
 					$row++;
 				}
