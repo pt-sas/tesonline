@@ -86,6 +86,7 @@ class Cbt_user_model extends CI_Model
             $query = 'AND user_grup_id=' . $group;
         }
         $this->db->where('(' . $kolom . ' LIKE "%' . $isi . '%" ' . $query . ')')
+            ->where('isactive', 'Y')
             ->from($this->table)
             ->order_by($kolom, 'ASC')
             ->limit($rows, $start);
