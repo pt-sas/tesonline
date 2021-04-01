@@ -32,13 +32,14 @@ class Access_tes
 		$result = $this->users_model->get_by_username($username);
 
 		if ($result) {
-			if ($password === $result->user_password) {
+			if (empty($result->user_name)) {
+				return ['data' => 0];
+			} else if ($password === $result->user_password) {
 				return ['data' => 1, 'msg' => $result];
 			} else {
 				return ['data' => 2];
 			}
 		}
-		return ['data' => 0];
 	}
 
 	/**
