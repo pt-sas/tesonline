@@ -101,6 +101,7 @@ class Cbt_user_model extends CI_Model
         }
         $this->db->select('COUNT(*) AS hasil')
             ->where('(' . $kolom . ' LIKE "%' . $isi . '%" ' . $query . ')')
+            ->where('isactive', 'Y')
             ->from($this->table);
         return $this->db->get();
     }
