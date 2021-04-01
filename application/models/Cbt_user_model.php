@@ -74,6 +74,7 @@ class Cbt_user_model extends CI_Model
             ->join('cbt_tes', 'cbt_tes.tes_id = cbt_tesgrup.tstgrp_tes_id', 'left')
             ->where('user_name', $username)
             ->where('DATE(cbt_tes.tes_begin_time)', 'CURDATE()', false)
+            ->where('isactive', 'Y')
             ->limit(1);
         $query = $this->db->get($this->table);
         return ($query->num_rows() > 0) ? $query->row() : FALSE;
