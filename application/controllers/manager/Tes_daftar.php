@@ -136,7 +136,7 @@ class Tes_daftar extends Member_Controller
 		$query = $this->cbt_tes_model->get_datatable($start, $rows, 'tes_nama', $search);
 		$iFilteredTotal = $query->num_rows();
 
-		$iTotal = $this->cbt_tes_model->get_datatable_count('tes_nama', $search)->row()->hasil;
+		$iTotal = $this->cbt_tes_model->get_datatable_count($rows, 'tes_nama', $search)->row()->hasil;
 
 		$output = array(
 			"sEcho" => intval($_GET['sEcho']),
@@ -152,7 +152,8 @@ class Tes_daftar extends Member_Controller
 			$record = array();
 
 			$record[] = ++$i;
-			$record[] = $temp->tes_nama;
+			// $record[] = $temp->tes_nama;
+			$record[] = $iTotal;
 			$record[] = (int)$temp->tes_max_score;
 			$record[] = $temp->tes_begin_time;
 			$record[] = $temp->tes_end_time;
