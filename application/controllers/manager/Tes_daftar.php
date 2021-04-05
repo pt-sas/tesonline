@@ -152,8 +152,7 @@ class Tes_daftar extends Member_Controller
 			$record = array();
 
 			$record[] = ++$i;
-			// $record[] = $temp->tes_nama;
-			$record[] = $iTotal;
+			$record[] = $temp->tes_nama;
 			$record[] = (int)$temp->tes_max_score;
 			$record[] = $temp->tes_begin_time;
 			$record[] = $temp->tes_end_time;
