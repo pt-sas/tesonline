@@ -168,6 +168,7 @@ class Peserta_daftar extends Member_Controller
 	{
 		// variable initialization
 		$group = $this->input->get('group');
+		$status = $this->input->get('status');
 
 		$search = "";
 		$start = 0;
@@ -183,10 +184,10 @@ class Peserta_daftar extends Member_Controller
 		$rows = $this->get_rows();
 
 		// run query to get user listing
-		$query = $this->cbt_user_model->get_datatable($start, $rows, 'user_firstname', $search, $group);
+		$query = $this->cbt_user_model->get_datatable($start, $rows, 'user_firstname', $search, $group, $status);
 		$iFilteredTotal = $query->num_rows();
 
-		$iTotal = $this->cbt_user_model->get_datatable_count('user_firstname', $search, $group)->row()->hasil;
+		$iTotal = $this->cbt_user_model->get_datatable_count('user_firstname', $search, $group, $status)->row()->hasil;
 
 		$output = array(
 			"sEcho" => intval($_GET['sEcho']),
