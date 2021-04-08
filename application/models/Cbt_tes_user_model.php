@@ -183,6 +183,29 @@ class Cbt_tes_user_model extends CI_Model
         return $this->db->get();
     }
 
+    function get_by_tes_user_group_tanggal($tglAwal, $tglAkhir, $group, $groupBy)
+    {
+        $sql = 'DATE(tes_begin_time)>="' . $tglAwal . '" AND DATE(tes_begin_time)<="' . $tglAkhir . '" 
+        AND tstgrp_grup_id="' . $group . '"
+        AND tes_nama NOT LIKE "' . '%Contoh%' . '"';
+
+        if ($groupBy == 'user_id') {
+            $this->db->select('cbt_user.*, SUM(`cbt_tes_soal`.`tessoal_nilai`) AS total')
+                ->order_by('total', 'desc');
+        } else if ($groupBy == 'tes_id') {
+            $this->db->select('cbt_tes.*');
+        }
+
+        $this->db->where('( ' . $sql . ' )')
+            ->from($this->table)
+            ->join('cbt_tes', 'cbt_tes_user.tesuser_tes_id = cbt_tes.tes_id')
+            ->join('cbt_tesgrup', 'cbt_tesgrup.tstgrp_tes_id = cbt_tes.tes_id', 'left')
+            ->join('cbt_user', 'cbt_tes_user.tesuser_user_id = cbt_user.user_id')
+            ->join('cbt_tes_soal', 'cbt_tes_soal.tessoal_tesuser_id = cbt_tes_user.tesuser_id')
+            ->group_by($groupBy);
+        return $this->db->get();
+    }
+
     function get_nilai_by_tes_user($tes_id, $user_id)
     {
         $this->db->select('SUM(`cbt_tes_soal`.`tessoal_nilai`) AS nilai')
