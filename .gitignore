@@ -6,3 +6,10 @@ Desktop.ini
 #manual book
 manual/
 tutorial_update/
+
+logs/
+
+#file import excel
+public/uploads/
+
+.vscode
