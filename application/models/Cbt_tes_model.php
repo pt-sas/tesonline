@@ -73,7 +73,7 @@ class Cbt_tes_model extends CI_Model
 
         if ($rows > 0) {
             $this->db->where('DATE(tes_begin_time)', 'CURDATE()', false)
-                ->or_where('DATE(tes_end_time)', 'CURDATE()', false)
+                ->or_where('DATE(tes_end_time) >=', date('Y-m-d'))
                 ->limit($rows, $start);
         }
         return $this->db->get();
@@ -87,7 +87,7 @@ class Cbt_tes_model extends CI_Model
 
         if ($rows > 0) {
             $this->db->where('DATE(tes_begin_time)', 'CURDATE()', false)
-                ->or_where('DATE(tes_end_time)', 'CURDATE()', false);
+                ->or_where('DATE(tes_end_time) >=', date('Y-m-d'));
         }
         return $this->db->get();
     }
