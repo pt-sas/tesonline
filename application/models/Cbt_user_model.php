@@ -80,29 +80,42 @@ class Cbt_user_model extends CI_Model
         return ($query->num_rows() > 0) ? $query->row() : FALSE;
     }
 
-    function get_datatable($start, $rows, $kolom, $isi, $group)
+    function get_datatable($start, $rows, $kolom, $isi, $group, $status)
     {
         $query = '';
         if ($group != 'semua') {
             $query = 'AND user_grup_id=' . $group;
         }
+
+        if ($status == 1) {
+            $status = 'Y';
+        } else {
+            $status = 'N';
+        }
         $this->db->where('(' . $kolom . ' LIKE "%' . $isi . '%" ' . $query . ')')
-            ->where('isactive', 'Y')
+            ->where('isactive', $status)
             ->from($this->table)
             ->order_by($kolom, 'ASC')
             ->limit($rows, $start);
         return $this->db->get();
     }
 
-    function get_datatable_count($kolom, $isi, $group)
+    function get_datatable_count($kolom, $isi, $group, $status)
     {
         $query = '';
         if ($group != 'semua') {
             $query = 'AND user_grup_id=' . $group;
         }
+
+        if ($status == 1) {
+            $status = 'Y';
+        } else {
+            $status = 'N';
+        }
+
         $this->db->select('COUNT(*) AS hasil')
             ->where('(' . $kolom . ' LIKE "%' . $isi . '%" ' . $query . ')')
-            ->where('isactive', 'Y')
+            ->where('isactive', $status)
             ->from($this->table);
         return $this->db->get();
     }
