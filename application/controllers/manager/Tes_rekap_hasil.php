@@ -33,7 +33,7 @@ class Tes_rekap_hasil extends Member_Controller
         $user_id = $this->users_model->get_login_info($username)->id;
 
         $tanggal_awal = date('Y-m-d', strtotime('- 1 days'));
-        $tanggal_akhir = date('Y-m-d', strtotime('+ 1 days'));
+        $tanggal_akhir = date('Y-m-d');
 
         $data['rentang_waktu'] = $tanggal_awal . ' - ' . $tanggal_akhir;
 
