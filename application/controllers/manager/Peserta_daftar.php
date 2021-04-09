@@ -123,6 +123,29 @@ class Peserta_daftar extends Member_Controller
 		echo json_encode($status);
 	}
 
+	function ubah_status_peserta()
+	{
+		$this->load->library('form_validation');
+
+		$this->form_validation->set_rules('edit-user-id[]', 'Peserta', 'required|strip_tags');
+		if ($this->form_validation->run() == TRUE) {
+			$user_id = $this->input->post('edit-user-id', TRUE);
+			foreach ($user_id as $kunci => $isi) {
+				if ($isi == "on") {
+					$data['isactive'] = $this->input->post('status', true);
+					$this->cbt_user_model->update('user_id', $kunci, $data);
+				}
+			}
+			$status['status'] = 1;
+			$status['pesan'] = 'Daftar Peserta berhasil diubah';
+		} else {
+			$status['status'] = 0;
+			$status['pesan'] = validation_errors();
+		}
+
+		echo json_encode($status);
+	}
+
 	function edit()
 	{
 		$this->load->library('form_validation');
