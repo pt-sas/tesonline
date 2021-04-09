@@ -89,6 +89,7 @@
                 </div>
                 <div class="box-footer">
                     <button type="button" id="btn-edit-hapus" class="btn btn-danger" title="Hapus Siswa yang dipilih">Hapus</button>
+                    <button type="button" id="btn-edit-status" class="btn btn-success" title="Status Siswa yang dipilih">Status</button>
                     <button type="button" id="btn-edit-pilih" class="btn btn-default pull-right">Pilih Semua</button>
                 </div>
             </div>
@@ -463,4 +464,80 @@
             }
         });
     });
+
+    $('#btn-edit-status').click(function(evt) {
+        let optionsAction = [];
+        arrStatus = [{
+                status: 'Y',
+                name: 'Aktif'
+            },
+            {
+                status: 'N',
+                name: 'Non Aktif'
+            }
+        ];
+
+
+        $.map(arrStatus, function(data) {
+            optionsAction[data.status] = data.name;
+        });
+
+        let url = "<?php echo site_url() . $url; ?>/ubah_status_peserta";
+
+        Swal.fire({
+            title: 'Status',
+            input: 'select',
+            inputOptions: optionsAction,
+            showCancelButton: true,
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, start it!',
+            cancelButtonText: 'No, cancel!',
+            showLoaderOnConfirm: true,
+            preConfirm: () => {
+                return new Promise((resolve) => {
+                    setTimeout(() => {
+                        resolve()
+                    }, 2000)
+                });
+            },
+            allowOutsideClick: () => !Swal.isLoading()
+        }).then((data) => {
+            if (data.value)
+                $.ajax({
+                    url: url,
+                    type: 'POST',
+                    data: $('#form-hapus').serialize() + '&status=' + data.value,
+                    dataType: 'JSON',
+                    success: function(result) {
+                        if (result.status == 1) {
+                            refresh_table();
+                            notify_success(result.pesan);
+                            $('#check').val('0');
+                        } else {
+                            notify_error(result.pesan);
+                        }
+                    },
+                    error: function(jqXHR, exception) {
+                        let msg = '';
+
+                        if (jqXHR.status === 0)
+                            msg = 'Not connect.\n Verify Network.';
+                        else if (jqXHR.status == 404)
+                            msg = 'Requested page not found. [404]';
+                        else if (jqXHR.status == 500)
+                            msg = 'Internal Server Error [500].';
+                        else if (exception === 'parsererror')
+                            msg = 'Requested JSON parse failed.';
+                        else if (exception === 'timeout')
+                            msg = 'Time out error.';
+                        else if (exception === 'abort')
+                            msg = 'Ajax request aborted.';
+                        else
+                            msg = 'Uncaught Error.\n' + jqXHR.responseText;
+
+                        console.log(msg);
+                    }
+                });
+        });
+    })
 </script>
