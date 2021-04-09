@@ -88,8 +88,8 @@
                     </form>
                 </div>
                 <div class="box-footer">
-                    <button type="button" id="btn-edit-hapus" class="btn btn-danger" title="Hapus Siswa yang dipilih">Hapus</button>
-                    <button type="button" id="btn-edit-status" class="btn btn-success" title="Status Siswa yang dipilih">Status</button>
+                    <button type="button" id="btn-edit-hapus" class="btn btn-danger" title="Hapus Peserta yang dipilih">Hapus</button>
+                    <button type="button" id="btn-edit-status" class="btn btn-success" title="Status Peserta yang dipilih">Status</button>
                     <button type="button" id="btn-edit-pilih" class="btn btn-default pull-right">Pilih Semua</button>
                 </div>
             </div>
