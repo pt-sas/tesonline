@@ -37,6 +37,7 @@
   <!-- select2 -->
   <link href="<?php echo base_url(); ?>public/plugins/select2-4.0.5/css/select2.min.css" rel="stylesheet" type="text/css" />
 
+  <link href="<?php echo base_url(); ?>public/plugins/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css" />
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -86,13 +87,17 @@
 
   <!-- select2 -->
   <script src="<?php echo base_url(); ?>public/plugins/select2-4.0.5/js/select2.min.js" type="text/javascript"></script>
-
+  <script src="<?php echo base_url(); ?>public/plugins/sweetalert2/sweetalert2.min.js" type="text/javascript"></script>
   <!-- membuat gambar responsive pada table -->
   <style type="text/css">
     table img {
       display: block;
       max-width: 100%;
       height: auto;
+    }
+
+    .swal2-popup {
+      font-size: 1.6rem !important;
     }
   </style>
 
