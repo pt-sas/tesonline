@@ -105,7 +105,7 @@ class Peserta_daftar extends Member_Controller
 	{
 		$this->load->library('form_validation');
 
-		$this->form_validation->set_rules('edit-user-id[]', 'Siswa', 'required|strip_tags');
+		$this->form_validation->set_rules('edit-user-id[]', 'Peserta', 'required|strip_tags');
 		if ($this->form_validation->run() == TRUE) {
 			$user_id = $this->input->post('edit-user-id', TRUE);
 			foreach ($user_id as $kunci => $isi) {
