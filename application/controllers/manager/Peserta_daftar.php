@@ -114,7 +114,7 @@ class Peserta_daftar extends Member_Controller
 				}
 			}
 			$status['status'] = 1;
-			$status['pesan'] = 'Daftar Siswa berhasil dihapus';
+			$status['pesan'] = 'Daftar Peserta berhasil dihapus';
 		} else {
 			$status['status'] = 0;
 			$status['pesan'] = validation_errors();
