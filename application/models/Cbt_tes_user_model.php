@@ -199,7 +199,6 @@ class Cbt_tes_user_model extends CI_Model
         $this->db->where('( ' . $sql . ' )')
             ->from($this->table)
             ->join('cbt_tes', 'cbt_tes_user.tesuser_tes_id = cbt_tes.tes_id')
-            ->join('cbt_tesgrup', 'cbt_tesgrup.tstgrp_tes_id = cbt_tes.tes_id', 'left')
             ->join('cbt_user', 'cbt_tes_user.tesuser_user_id = cbt_user.user_id')
             ->join('cbt_tes_soal', 'cbt_tes_soal.tessoal_tesuser_id = cbt_tes_user.tesuser_id')
             ->group_by($groupBy);
