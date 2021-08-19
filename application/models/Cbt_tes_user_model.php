@@ -186,7 +186,7 @@ class Cbt_tes_user_model extends CI_Model
     function get_by_tes_user_group_tanggal($tglAwal, $tglAkhir, $group, $groupBy)
     {
         $sql = 'DATE(tes_begin_time)>="' . $tglAwal . '" AND DATE(tes_begin_time)<="' . $tglAkhir . '" 
-        AND tstgrp_grup_id="' . $group . '"
+        AND user_grup_id="' . $group . '"
         AND tes_nama NOT LIKE "' . '%Contoh%' . '"';
 
         if ($groupBy == 'user_id') {
