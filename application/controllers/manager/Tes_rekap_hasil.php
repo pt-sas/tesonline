@@ -80,15 +80,17 @@ class Tes_rekap_hasil extends Member_Controller
 
             $worksheet->setCellValueByColumnAndRow(2, 3, $nama_grup);
             $worksheet->setCellValueByColumnAndRow(2, 4, $this->tools->indonesian_date($tanggal[0], 'j F Y', '') . ' - ' . $this->tools->indonesian_date($tanggal[1], 'j F Y', ''));
-            $worksheet->setCellValueByColumnAndRow(2, 5, $query_tes->num_rows());
+            $worksheet->setCellValueByColumnAndRow(2, 5, $query_tes->num_rows() . ' Tes');
 
-            if ($query_user->num_rows() > 0 and $query_tes->num_rows() > 0) {
+            if ($query_user->num_rows() > 0 && $query_tes->num_rows() > 0) {
                 $query_tes = $query_tes->result();
                 $query_user = $query_user->result();
 
-                $kolom = 4;
+                $kolom = 5;
                 foreach ($query_tes as $tes) {
                     $worksheet->setCellValueByColumnAndRow($kolom, 8, $tes->tes_nama);
+                    // Otomatis tinggi kolom
+                    $worksheet->getRowDimension(8)->setRowHeight(-1);
                     $kolom++;
                 }
 
@@ -97,9 +99,20 @@ class Tes_rekap_hasil extends Member_Controller
                     $worksheet->setCellValueByColumnAndRow(0, $row, ($row - 8));
                     $worksheet->setCellValueByColumnAndRow(1, $row, $user->user_firstname);
                     $worksheet->setCellValueByColumnAndRow(2, $row, $nama_grup);
-                    $worksheet->setCellValueByColumnAndRow(3, $row, $user->total);
+                    $worksheet->setCellValueByColumnAndRow(3, $row, $user->user_detail);
+                    $worksheet->setCellValueByColumnAndRow(4, $row, $user->total);
 
-                    $kolom = 4;
+                    $worksheet->getStyle('D9:D' . $worksheet->getHighestRow())
+                        ->getAlignment()
+                        ->setWrapText(true);
+                    $worksheet->getStyle('B9:B' . $worksheet->getHighestRow())
+                        ->getAlignment()
+                        ->setVertical(PHPExcel_Style_Alignment::VERTICAL_CENTER);
+                    $worksheet->getStyle('C9:C' . $worksheet->getHighestRow())
+                        ->getAlignment()
+                        ->setVertical(PHPExcel_Style_Alignment::VERTICAL_CENTER);
+
+                    $kolom = 5;
                     foreach ($query_tes as $tes) {
                         // Mendapatkan nilai tiap Tes untuk setiap siswa
                         $query_nilai = $this->cbt_tes_user_model->get_nilai_by_tes_user($tes->tes_id, $user->user_id);
