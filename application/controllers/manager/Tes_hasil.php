@@ -61,6 +61,16 @@ class Tes_hasil extends Member_Controller
 		}
 		$data['select_tes'] = $select;
 
+		$query_peserta = $this->cbt_user_model->get_user();
+		$select = '<option value="semua">Semua Peserta</option>';
+		if ($query_peserta->num_rows() > 0) {
+			$query_peserta = $query_peserta->result();
+			foreach ($query_peserta as $temp) {
+				$select = $select . '<option value="' . $temp->user_id . '">' . $temp->user_name . '</option>';
+			}
+		}
+		$data['select_peserta'] = $select;
+
 		$this->template->display_admin($this->kelompok . '/tes_hasil_view', 'Hasil Tes', $data);
 	}
 
@@ -124,20 +134,20 @@ class Tes_hasil extends Member_Controller
 		echo json_encode($status);
 	}
 
-	function export($tes_id = null, $grup_id = null, $waktu = null, $urutkan = null, $status = null, $keterangan = null)
+	function export($tes_id = null, $grup_id = null, $waktu = null, $urutkan = null, $peserta = null, $status = null, $keterangan = null)
 	{
-		if (!empty($tes_id) and !empty($grup_id) and !empty($waktu) and !empty($urutkan) and !empty($status)) {
+		if (!empty($tes_id) and !empty($grup_id) and !empty($waktu) and !empty($urutkan) and !empty($peserta) and !empty($status)) {
 			$this->load->library('excel');
 			$waktu =  urldecode($waktu);
 			$tanggal = explode(" - ", $waktu);
 			if (!empty($keterangan)) {
 				$keterangan =  urldecode($keterangan);
 			}
-
+			// $peserta = 341;
 			if ($status == 'mengerjakan') {
-				$query = $this->cbt_tes_user_model->get_by_tes_group_urut_tanggal($tes_id, $grup_id, $urutkan, $tanggal, $keterangan);
+				$query = $this->cbt_tes_user_model->get_by_tes_group_urut_tanggal($tes_id, $grup_id, $urutkan, $tanggal, $keterangan, $peserta);
 			} else {
-				$query = $this->cbt_user_model->get_by_tes_group_urut_tanggal($tes_id, $grup_id, $urutkan, $tanggal, $keterangan);
+				$query = $this->cbt_user_model->get_by_tes_group_urut_tanggal($tes_id, $grup_id, $urutkan, $tanggal, $keterangan, $peserta);
 			}
 			$inputFileName = './public/form/form-data-hasil-tes.xls';
 			$excel = PHPExcel_IOFactory::load($inputFileName);
@@ -195,6 +205,7 @@ class Tes_hasil extends Member_Controller
 		$keterangan = $this->input->get('keterangan');
 		$status = $this->input->get('status');
 		$tanggal = explode(" - ", $waktu);
+		$peserta = $this->input->get('peserta');
 
 		$search = "";
 		$start = 0;
@@ -211,11 +222,11 @@ class Tes_hasil extends Member_Controller
 
 		// run query to get user listing
 		if ($status == 'mengerjakan') {
-			$query = $this->cbt_tes_user_model->get_datatable($start, $rows, $tes_id, $grup_id, $urutkan, $tanggal, $keterangan);
-			$iTotal = $this->cbt_tes_user_model->get_datatable_count($tes_id, $grup_id, $urutkan, $tanggal, $keterangan)->row()->hasil;
+			$query = $this->cbt_tes_user_model->get_datatable($start, $rows, $tes_id, $grup_id, $urutkan, $tanggal, $keterangan, $peserta);
+			$iTotal = $this->cbt_tes_user_model->get_datatable_count($tes_id, $grup_id, $urutkan, $tanggal, $keterangan, $peserta)->row()->hasil;
 		} else {
-			$query = $this->cbt_user_model->get_datatable_hasiltes($start, $rows, $tes_id, $grup_id, $urutkan, $tanggal, $keterangan);
-			$iTotal = $this->cbt_user_model->get_datatable_hasiltes_count($tes_id, $grup_id, $urutkan, $tanggal, $keterangan)->row()->hasil;
+			$query = $this->cbt_user_model->get_datatable_hasiltes($start, $rows, $tes_id, $grup_id, $urutkan, $tanggal, $keterangan, $peserta);
+			$iTotal = $this->cbt_user_model->get_datatable_hasiltes_count($tes_id, $grup_id, $urutkan, $tanggal, $keterangan, $peserta)->row()->hasil;
 		}
 
 		$iFilteredTotal = $query->num_rows();

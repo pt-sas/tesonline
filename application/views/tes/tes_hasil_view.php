@@ -1,13 +1,13 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
-	<h1>
-		Hasil Tes
-		<small>Hasil tes, menghapus hasil tes, mengunci tes, membuka kunci, dan menambah waktu tes</small>
-	</h1>
-	<ol class="breadcrumb">
-		<li><a href="<?php echo site_url(); ?>/"><i class="fa fa-dashboard"></i> Home</a></li>
-		<li class="active">Hasil Tes</li>
-	</ol>
+    <h1>
+        Hasil Tes
+        <small>Hasil tes, menghapus hasil tes, mengunci tes, membuka kunci, dan menambah waktu tes</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="<?php echo site_url(); ?>/"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Hasil Tes</li>
+    </ol>
 </section>
 
 <!-- Main content -->
@@ -20,20 +20,24 @@
                 </div><!-- /.box-header -->
                 <div class="box-body form-horizontal">
                     <div class="col-sm-6">
-						<div class="form-group">
+                        <div class="form-group">
                             <label class="col-sm-3 control-label">Tes</label>
                             <div class="col-sm-9">
                                 <input type="hidden" name="check" id="check" value="0">
-                                <select name="pilih-tes" id="pilih-tes" class="form-control input-sm">
-                                    <?php if(!empty($select_tes)){ echo $select_tes; } ?>
+                                <select name="pilih-tes" id="pilih-tes" class="form-control input-sm input-select">
+                                    <?php if (!empty($select_tes)) {
+                                        echo $select_tes;
+                                    } ?>
                                 </select>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label">Group</label>
                             <div class="col-sm-9">
-                                <select name="pilih-group" id="pilih-group" class="form-control input-sm">
-                                    <?php if(!empty($select_group)){ echo $select_group; } ?>
+                                <select name="pilih-group" id="pilih-group" class="form-control input-sm input-select">
+                                    <?php if (!empty($select_group)) {
+                                        echo $select_group;
+                                    } ?>
                                 </select>
                             </div>
                         </div>
@@ -44,23 +48,37 @@
                                     <div class="input-group-addon">
                                         <i class="fa fa-clock-o"></i>
                                     </div>
-                                    <input type="text" name="pilih-rentang-waktu" id="pilih-rentang-waktu" class="form-control input-sm" value="<?php if(!empty($rentang_waktu)){ echo $rentang_waktu; } ?>" readonly />
+                                    <input type="text" name="pilih-rentang-waktu" id="pilih-rentang-waktu" class="form-control input-sm" value="<?php if (!empty($rentang_waktu)) {
+                                                                                                                                                    echo $rentang_waktu;
+                                                                                                                                                } ?>" readonly />
                                 </div>
-								<span class="help-block" id="info-waktu">Rentang waktu peserta saat memulai Tes</span>
+                                <span class="help-block" id="info-waktu">Rentang waktu peserta saat memulai Tes</span>
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-6">
-						<div class="form-group">
-                            <label class="col-sm-4 control-label">Status Peserta</label>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">Peserta</label>
                             <div class="col-sm-8">
-                                <select name="pilih-status" id="pilih-status" class="form-control input-sm">
-                                    <option value="mengerjakan">Peserta Mengerjakan Tes</option>
-									<option value="tidak">Peserta Belum Mengerjakan Tes</option>
+                                <select name="pilih-peserta" id="pilih-peserta" class="form-control input-select">
+                                    <!-- <option value="mengerjakan">Peserta Mengerjakan Tes</option>
+                                    <option value="tidak">Peserta Belum Mengerjakan Tes</option> -->
+                                    <?php if (!empty($select_peserta)) {
+                                        echo $select_peserta;
+                                    } ?>
                                 </select>
                             </div>
                         </div>
-						<div class="form-group">
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">Status Peserta</label>
+                            <div class="col-sm-8">
+                                <select name="pilih-status" id="pilih-status" class="form-control input-sm input-select">
+                                    <option value="mengerjakan">Peserta Mengerjakan Tes</option>
+                                    <option value="tidak">Peserta Belum Mengerjakan Tes</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label class="col-sm-4 control-label">Keterangan Peserta</label>
                             <div class="col-sm-8">
                                 <input type="text" name="pilih-keterangan" id="pilih-keterangan" placeholder="Keterangan Peserta Tes" class="form-control input-sm" />
@@ -69,8 +87,8 @@
                         <div class="form-group">
                             <label class="col-sm-4 control-label">Urutkan</label>
                             <div class="col-sm-8">
-                                <select name="pilih-urutkan" id="pilih-urutkan" class="form-control input-sm">
-                                    <option value="tertinggi">Nilai Tertinggi</option>  
+                                <select name="pilih-urutkan" id="pilih-urutkan" class="form-control input-sm input-select">
+                                    <option value="tertinggi">Nilai Tertinggi</option>
                                     <option value="terendah">Nilai Terendah</option>
                                     <option value="waktu">Waktu Tes</option>
                                     <option value="nama">Nama User</option>
@@ -86,23 +104,23 @@
             </div>
         </div>
     </div>
-	<div class="row">
-        <?php echo form_open($url.'/edit_tes','id="form-edit"'); ?>
+    <div class="row">
+        <?php echo form_open($url . '/edit_tes', 'id="form-edit"'); ?>
         <div class="col-xs-12">
-			<div class="box">
-				<div class="box-header with-border">
-					<div class="box-title">Daftar Hasil Tes</div>
+            <div class="box">
+                <div class="box-header with-border">
+                    <div class="box-title">Daftar Hasil Tes</div>
                     <div class="box-tools pull-right">
                         <div class="dropdown pull-right">
-                            <a  style="cursor: pointer;" onclick="export_excel()">Export ke Excel</a>
+                            <a style="cursor: pointer;" onclick="export_excel()">Export ke Excel</a>
                         </div>
                     </div>
-				</div><!-- /.box-header -->
+                </div><!-- /.box-header -->
 
                 <div class="box-body">
                     <input type="hidden" name="edit-pilihan" id="edit-pilihan">
-					<table id="table-hasil" class="table table-bordered table-hover">
-						<thead>
+                    <table id="table-hasil" class="table table-bordered table-hover">
+                        <thead>
                             <tr>
                                 <th class="all">No.</th>
                                 <th>Waktu Mulai</th>
@@ -132,8 +150,8 @@
                                 <td> </td>
                             </tr>
                         </tbody>
-					</table>                        
-				</div>
+                    </table>
+                </div>
                 <div class="box-footer">
                     <button type="button" id="btn-edit-pilih" title="Pilih Hasil Tes" class="btn btn-default pull-right">Pilih Semua</button>
                     <button type="button" id="btn-edit-hapus" title="Hapus Hasil" class="btn btn-primary">Hapus</button>
@@ -141,7 +159,7 @@
                     <button type="button" id="btn-edit-buka-tes" class="btn btn-primary">Buka Tes</button>
                     <button type="button" id="btn-edit-waktu" class="btn btn-primary">Tambah Waktu</button>
                 </div>
-			</div>
+            </div>
         </div>
 
         <div class="modal" id="modal-waktu" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
@@ -180,75 +198,87 @@
 
 
 <script lang="javascript">
-    function refresh_table(){
+    $(document).ready(function(e) {
+        $('.input-select').select2({
+            placeholder: 'Select an option',
+            width: '100%',
+        });
+    });
+
+    function refresh_table() {
         $('#table-hasil').dataTable().fnReloadAjax();
     }
 
-    function detail_tes(tesuser_id){
-        window.open("<?php echo site_url().'manager/tes_hasil_detail'; ?>/index/"+tesuser_id);
+    function detail_tes(tesuser_id) {
+        window.open("<?php echo site_url() . 'manager/tes_hasil_detail'; ?>/index/" + tesuser_id);
     }
 
-    function export_excel(){
+    function export_excel() {
         var tes = $('#pilih-tes').val();
         var group = $('#pilih-group').val();
         var waktu = $('#pilih-rentang-waktu').val();
         var urutkan = $('#pilih-urutkan').val();
-		var status = $('#pilih-status').val();
-		var keterangan = $('#pilih-keterangan').val();
+        var status = $('#pilih-status').val();
+        var keterangan = $('#pilih-keterangan').val();
+        var peserta = $('#pilih-peserta').val();
 
-        window.open("<?php echo site_url().$url; ?>/export/"+tes+"/"+group+"/"+waktu+"/"+urutkan+"/"+status+"/"+keterangan, "_self");
+        window.open("<?php echo site_url() . $url; ?>/export/" + tes + "/" + group + "/" + waktu + "/" + urutkan + "/" + peserta + "/" + status + "/" + keterangan, "_self");
     }
 
-    $(function(){
-        $('#pilih-rentang-waktu').daterangepicker({timePicker: true, timePickerIncrement: 30, format: 'YYYY-MM-DD H:mm'});
-
-		$("#pilih-status").change(function(){
-            if($('#pilih-status').val()=='mengerjakan'){
-				$('#info-waktu').html('Rentang waktu peserta saat memulai Tes');
-			}else{
-				$('#info-waktu').html('Rentang waktu Tes dilaksanakan sesuai di Daftar Tes');
-			}
+    $(function() {
+        $('#pilih-rentang-waktu').daterangepicker({
+            timePicker: true,
+            timePickerIncrement: 30,
+            format: 'YYYY-MM-DD H:mm'
         });
-		
-        $('#btn-pilih').click(function(){
+
+        $("#pilih-status").change(function() {
+            if ($('#pilih-status').val() == 'mengerjakan') {
+                $('#info-waktu').html('Rentang waktu peserta saat memulai Tes');
+            } else {
+                $('#info-waktu').html('Rentang waktu Tes dilaksanakan sesuai di Daftar Tes');
+            }
+        });
+
+        $('#btn-pilih').click(function() {
             $("#modal-proses").modal('show');
             $('#check').val('0');
             refresh_table();
             $("#modal-proses").modal('hide');
         });
 
-        $('#btn-edit-hapus').click(function(){
+        $('#btn-edit-hapus').click(function() {
             $('#edit-pilihan').val('hapus');
             $('#form-edit').submit();
         });
 
-        $('#btn-edit-hentikan').click(function(){
-           $('#edit-pilihan').val('hentikan');
-            $('#form-edit').submit(); 
+        $('#btn-edit-hentikan').click(function() {
+            $('#edit-pilihan').val('hentikan');
+            $('#form-edit').submit();
         });
 
-        $('#btn-edit-buka-tes').click(function(){
+        $('#btn-edit-buka-tes').click(function() {
             $('#edit-pilihan').val('buka');
             $('#form-edit').submit();
         });
 
-        $('#btn-edit-waktu').click(function(){
+        $('#btn-edit-waktu').click(function() {
             $('#edit-pilihan').val('waktu');
             $('#waktu-menit').val('10');
             $("#modal-waktu").modal('show');
         });
 
-        $('#btn-edit-waktu-simpan').click(function(){
+        $('#btn-edit-waktu-simpan').click(function() {
             $('#form-edit').submit();
         });
 
         $('#btn-edit-pilih').click(function(event) {
-            if($('#check').val()==0) {
+            if ($('#check').val() == 0) {
                 $(':checkbox').each(function() {
                     this.checked = true;
                 });
                 $('#check').val('1');
-            }else{
+            } else {
                 $(':checkbox').each(function() {
                     this.checked = false;
                 });
@@ -256,59 +286,123 @@
             }
         });
 
-        $('#form-edit').submit(function(){
+        $('#form-edit').submit(function() {
             $("#modal-proses").modal('show');
             $.ajax({
-                    url:"<?php echo site_url().'/'.$url; ?>/edit_tes",
-                    type:"POST",
-                    data:$('#form-edit').serialize(),
-                    cache: false,
-                    success:function(respon){
-                        var obj = $.parseJSON(respon);
-                        if(obj.status==1){
-                            refresh_table();
-                            $("#modal-proses").modal('hide');
-                            $("#modal-waktu").modal('hide');
-                            notify_success(obj.pesan);
-                        }else{
-                            $("#modal-proses").modal('hide');
-                            notify_error(obj.pesan);
-                        }
+                url: "<?php echo site_url() . '/' . $url; ?>/edit_tes",
+                type: "POST",
+                data: $('#form-edit').serialize(),
+                cache: false,
+                success: function(respon) {
+                    var obj = $.parseJSON(respon);
+                    if (obj.status == 1) {
+                        refresh_table();
+                        $("#modal-proses").modal('hide');
+                        $("#modal-waktu").modal('hide');
+                        notify_success(obj.pesan);
+                    } else {
+                        $("#modal-proses").modal('hide');
+                        notify_error(obj.pesan);
                     }
+                }
             });
             return false;
         });
 
         $('#table-hasil').DataTable({
-                  "paging": true,
-                  "iDisplayLength":50,
-                  "bProcessing": false,
-                  "bServerSide": true, 
-                  "searching": false,
-                  "aoColumns": [
-    					{"bSearchable": false, "bSortable": false, "sWidth":"20px"},
-    					{"bSearchable": false, "bSortable": false, "sWidth":"100px"},
-    					{"bSearchable": false, "bSortable": false, "sWidth":"100px"},
-                        {"bSearchable": false, "bSortable": false},
-                        {"bSearchable": false, "bSortable": false},
-                        {"bSearchable": false, "bSortable": false},
-                        {"bSearchable": false, "bSortable": false},
-                        {"bSearchable": false, "bSortable": false},
-                        {"bSearchable": false, "bSortable": false, "sWidth":"135px"},
-    					{"bSearchable": false, "bSortable": false, "sWidth":"150px"},
-                        {"bSearchable": false, "bSortable": false, "sWidth":"20px"}],
-                  "sAjaxSource": "<?php echo site_url().'/'.$url; ?>/get_datatable/",
-                  "autoWidth": false,
-                  "responsive": true,
-                  "aLengthMenu": [[10, 25, 50, 100, 200, 500], [10, 25, 50, 100, 200, 500]],
-                  "fnServerParams": function ( aoData ) {
-                    aoData.push( { "name": "tes", "value": $('#pilih-tes').val()} );
-                    aoData.push( { "name": "group", "value": $('#pilih-group').val()} );
-                    aoData.push( { "name": "waktu", "value": $('#pilih-rentang-waktu').val()} );
-                    aoData.push( { "name": "urutkan", "value": $('#pilih-urutkan').val()} );
-					aoData.push( { "name": "status", "value": $('#pilih-status').val()} );
-					aoData.push( { "name": "keterangan", "value": $('#pilih-keterangan').val()} );
-                  }
-         });          
+            "paging": true,
+            "iDisplayLength": 50,
+            "bProcessing": false,
+            "bServerSide": true,
+            "searching": false,
+            "aoColumns": [{
+                    "bSearchable": false,
+                    "bSortable": false,
+                    "sWidth": "20px"
+                },
+                {
+                    "bSearchable": false,
+                    "bSortable": false,
+                    "sWidth": "100px"
+                },
+                {
+                    "bSearchable": false,
+                    "bSortable": false,
+                    "sWidth": "100px"
+                },
+                {
+                    "bSearchable": false,
+                    "bSortable": false
+                },
+                {
+                    "bSearchable": false,
+                    "bSortable": false
+                },
+                {
+                    "bSearchable": false,
+                    "bSortable": false
+                },
+                {
+                    "bSearchable": false,
+                    "bSortable": false
+                },
+                {
+                    "bSearchable": false,
+                    "bSortable": false
+                },
+                {
+                    "bSearchable": false,
+                    "bSortable": false,
+                    "sWidth": "135px"
+                },
+                {
+                    "bSearchable": false,
+                    "bSortable": false,
+                    "sWidth": "150px"
+                },
+                {
+                    "bSearchable": false,
+                    "bSortable": false,
+                    "sWidth": "20px"
+                }
+            ],
+            "sAjaxSource": "<?php echo site_url() . '/' . $url; ?>/get_datatable/",
+            "autoWidth": false,
+            "responsive": true,
+            "aLengthMenu": [
+                [10, 25, 50, 100, 200, 500],
+                [10, 25, 50, 100, 200, 500]
+            ],
+            "fnServerParams": function(aoData) {
+                aoData.push({
+                    "name": "tes",
+                    "value": $('#pilih-tes').val()
+                });
+                aoData.push({
+                    "name": "group",
+                    "value": $('#pilih-group').val()
+                });
+                aoData.push({
+                    "name": "waktu",
+                    "value": $('#pilih-rentang-waktu').val()
+                });
+                aoData.push({
+                    "name": "urutkan",
+                    "value": $('#pilih-urutkan').val()
+                });
+                aoData.push({
+                    "name": "status",
+                    "value": $('#pilih-status').val()
+                });
+                aoData.push({
+                    "name": "keterangan",
+                    "value": $('#pilih-keterangan').val()
+                });
+                aoData.push({
+                    "name": "peserta",
+                    "value": $('#pilih-peserta').val()
+                });
+            }
+        });
     });
 </script>

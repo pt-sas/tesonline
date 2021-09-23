@@ -144,7 +144,7 @@ class Cbt_tes_user_model extends CI_Model
         return $this->db->get();
     }
 
-    function get_by_tes_group_urut_tanggal($tes_id, $grup_id, $urutkan, $tanggal, $keterangan)
+    function get_by_tes_group_urut_tanggal($tes_id, $grup_id, $urutkan, $tanggal, $keterangan, $peserta)
     {
         $sql = 'tesuser_creation_time>="' . $tanggal[0] . '" AND tesuser_creation_time<="' . $tanggal[1] . '"';
 
@@ -153,6 +153,9 @@ class Cbt_tes_user_model extends CI_Model
         }
         if ($grup_id != 'semua') {
             $sql = $sql . ' AND user_grup_id="' . $grup_id . '"';
+        }
+        if ($peserta != 'semua') {
+            $sql = $sql . ' AND tesuser_user_id="' . $peserta . '"';
         }
         $order = '';
         if ($urutkan == 'tertinggi') {
@@ -218,7 +221,7 @@ class Cbt_tes_user_model extends CI_Model
      * datatable untuk hasil tes yang sudah mengerjakan
      *
      */
-    function get_datatable($start, $rows, $tes_id, $grup_id, $urutkan, $tanggal, $keterangan)
+    function get_datatable($start, $rows, $tes_id, $grup_id, $urutkan, $tanggal, $keterangan, $peserta)
     {
         $sql = 'tesuser_creation_time>="' . $tanggal[0] . '" AND tesuser_creation_time<="' . $tanggal[1] . '"';
 
@@ -227,6 +230,9 @@ class Cbt_tes_user_model extends CI_Model
         }
         if ($grup_id != 'semua') {
             $sql = $sql . ' AND user_grup_id="' . $grup_id . '"';
+        }
+        if ($peserta != 'semua') {
+            $sql = $sql . ' AND tesuser_user_id="' . $peserta . '"';
         }
         $order = '';
         if ($urutkan == 'tertinggi') {
@@ -258,7 +264,7 @@ class Cbt_tes_user_model extends CI_Model
         return $this->db->get();
     }
 
-    function get_datatable_count($tes_id, $grup_id, $urutkan, $tanggal, $keterangan)
+    function get_datatable_count($tes_id, $grup_id, $urutkan, $tanggal, $keterangan, $peserta)
     {
         $sql = 'tesuser_creation_time>="' . $tanggal[0] . '" AND tesuser_creation_time<="' . $tanggal[1] . '"';
 
@@ -267,6 +273,9 @@ class Cbt_tes_user_model extends CI_Model
         }
         if ($grup_id != 'semua') {
             $sql = $sql . ' AND user_grup_id="' . $grup_id . '"';
+        }
+        if ($peserta != 'semua') {
+            $sql = $sql . ' AND tesuser_user_id="' . $peserta . '"';
         }
 
         if (!empty($keterangan)) {

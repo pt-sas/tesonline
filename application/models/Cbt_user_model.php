@@ -123,7 +123,7 @@ class Cbt_user_model extends CI_Model
     /**
      * export data user yang belum mengerjakan
      */
-    function get_by_tes_group_urut_tanggal($tes_id, $grup_id, $urutkan, $tanggal, $keterangan)
+    function get_by_tes_group_urut_tanggal($tes_id, $grup_id, $urutkan, $tanggal, $keterangan, $peserta)
     {
         $sql = 'tes_begin_time>="' . $tanggal[0] . '" AND tes_end_time<="' . $tanggal[1] . '" AND tesuser_id IS NULL';
 
@@ -132,6 +132,9 @@ class Cbt_user_model extends CI_Model
         }
         if ($grup_id != 'semua') {
             $sql = $sql . ' AND user_grup_id="' . $grup_id . '"';
+        }
+        if ($peserta != 'semua') {
+            $sql = $sql . ' AND tesuser_user_id="' . $peserta . '"';
         }
         $order = '';
         if ($urutkan == 'nama') {
@@ -161,7 +164,7 @@ class Cbt_user_model extends CI_Model
      * datatable untuk hasil tes yang belum mengerjakan
      *
      */
-    function get_datatable_hasiltes($start, $rows, $tes_id, $grup_id, $urutkan, $tanggal, $keterangan)
+    function get_datatable_hasiltes($start, $rows, $tes_id, $grup_id, $urutkan, $tanggal, $keterangan, $peserta)
     {
         $sql = 'tes_begin_time>="' . $tanggal[0] . '" AND tes_end_time<="' . $tanggal[1] . '" AND tesuser_id IS NULL';
 
@@ -170,6 +173,9 @@ class Cbt_user_model extends CI_Model
         }
         if ($grup_id != 'semua') {
             $sql = $sql . ' AND user_grup_id="' . $grup_id . '"';
+        }
+        if ($peserta != 'semua') {
+            $sql = $sql . ' AND tesuser_user_id="' . $peserta . '"';
         }
         $order = '';
         if ($urutkan == 'nama') {
@@ -196,7 +202,7 @@ class Cbt_user_model extends CI_Model
         return $this->db->get();
     }
 
-    function get_datatable_hasiltes_count($tes_id, $grup_id, $urutkan, $tanggal, $keterangan)
+    function get_datatable_hasiltes_count($tes_id, $grup_id, $urutkan, $tanggal, $keterangan, $peserta)
     {
         $sql = '(tes_begin_time>="' . $tanggal[0] . '" AND tes_end_time<="' . $tanggal[1] . '") AND tesuser_id IS NULL';
 
@@ -205,6 +211,9 @@ class Cbt_user_model extends CI_Model
         }
         if ($grup_id != 'semua') {
             $sql = $sql . ' AND user_grup_id="' . $grup_id . '"';
+        }
+        if ($peserta != 'semua') {
+            $sql = $sql . ' AND tesuser_user_id="' . $peserta . '"';
         }
 
         if (!empty($keterangan)) {
@@ -218,6 +227,13 @@ class Cbt_user_model extends CI_Model
             ->join('cbt_tes', 'cbt_tesgrup.tstgrp_tes_id = cbt_tes.tes_id')
             ->join('cbt_tes_user', '(cbt_tes_user.tesuser_tes_id = cbt_tes.tes_id) AND (cbt_tes_user.tesuser_user_id = cbt_user.user_id)', 'left')
             ->from($this->table);
+        return $this->db->get();
+    }
+
+    function get_user()
+    {
+        $this->db->from($this->table)
+            ->order_by('user_name', 'ASC');
         return $this->db->get();
     }
 }
