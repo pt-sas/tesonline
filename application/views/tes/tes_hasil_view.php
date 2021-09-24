@@ -50,7 +50,7 @@
                                     </div>
                                     <input type="text" name="pilih-rentang-waktu" id="pilih-rentang-waktu" class="form-control input-sm" value="<?php if (!empty($rentang_waktu)) {
                                                                                                                                                     echo $rentang_waktu;
-                                                                                                                                                } ?>" readonly />
+                                                                                                                                                } ?>" />
                                 </div>
                                 <span class="help-block" id="info-waktu">Rentang waktu peserta saat memulai Tes</span>
                             </div>
@@ -61,8 +61,6 @@
                             <label class="col-sm-4 control-label">Peserta</label>
                             <div class="col-sm-8">
                                 <select name="pilih-peserta" id="pilih-peserta" class="form-control input-select">
-                                    <!-- <option value="mengerjakan">Peserta Mengerjakan Tes</option>
-                                    <option value="tidak">Peserta Belum Mengerjakan Tes</option> -->
                                     <?php if (!empty($select_peserta)) {
                                         echo $select_peserta;
                                     } ?>
@@ -221,6 +219,10 @@
         var status = $('#pilih-status').val();
         var keterangan = $('#pilih-keterangan').val();
         var peserta = $('#pilih-peserta').val();
+
+        if (waktu == '') {
+            waktu = null;
+        }
 
         window.open("<?php echo site_url() . $url; ?>/export/" + tes + "/" + group + "/" + waktu + "/" + urutkan + "/" + peserta + "/" + status + "/" + keterangan, "_self");
     }
