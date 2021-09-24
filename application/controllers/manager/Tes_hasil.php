@@ -136,10 +136,16 @@ class Tes_hasil extends Member_Controller
 
 	function export($tes_id = null, $grup_id = null, $waktu = null, $urutkan = null, $peserta = null, $status = null, $keterangan = null)
 	{
-		if (!empty($tes_id) and !empty($grup_id) and !empty($waktu) and !empty($urutkan) and !empty($peserta) and !empty($status)) {
+		if (!empty($tes_id) and !empty($grup_id) and !empty($urutkan) and !empty($peserta) and !empty($status)) {
 			$this->load->library('excel');
-			$waktu =  urldecode($waktu);
-			$tanggal = explode(" - ", $waktu);
+
+			$tanggal = '';
+
+			if ($waktu !== "null") {
+				$waktu =  urldecode($waktu);
+				$tanggal = explode(" - ", $waktu);
+			}
+
 			if (!empty($keterangan)) {
 				$keterangan =  urldecode($keterangan);
 			}
