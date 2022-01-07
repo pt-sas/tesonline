@@ -78,7 +78,7 @@ class Peserta_import extends Member_Controller
                 $kolom3 = addslashes($worksheet->getCellByColumnAndRow(3, $row)->getValue()); //nama
                 $kolom4 = $worksheet->getCellByColumnAndRow(4, $row)->getValue(); //email
                 $kolom5 = $worksheet->getCellByColumnAndRow(5, $row)->getValue(); //group
-                $kolom6 = $worksheet->getCellByColumnAndRow(6, $row)->getValue(); //keterangan
+                $kolom6 = PHPExcel_Style_NumberFormat::toFormattedString($worksheet->getCellByColumnAndRow(6, $row)->getValue(), 'dd-mm-yyyy'); //keterangan
 
                 if (empty($kolom1)) {
                     $kosong++;
