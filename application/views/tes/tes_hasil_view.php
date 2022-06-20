@@ -24,10 +24,8 @@
                             <label class="col-sm-3 control-label">Tes</label>
                             <div class="col-sm-9">
                                 <input type="hidden" name="check" id="check" value="0">
-                                <select name="pilih-tes" id="pilih-tes" class="form-control input-sm input-select">
-                                    <?php if (!empty($select_tes)) {
-                                        echo $select_tes;
-                                    } ?>
+                                <select name="pilih-tes" id="pilih-tes" class="form-control input-sm">
+                                    <option value="semua">Semua Tes</option>
                                 </select>
                             </div>
                         </div>
@@ -60,10 +58,8 @@
                         <div class="form-group">
                             <label class="col-sm-4 control-label">Peserta</label>
                             <div class="col-sm-8">
-                                <select name="pilih-peserta" id="pilih-peserta" class="form-control input-select">
-                                    <?php if (!empty($select_peserta)) {
-                                        echo $select_peserta;
-                                    } ?>
+                                <select name="pilih-peserta" id="pilih-peserta" class="form-control">
+                                    <option value="semua">Semua Peserta</option>
                                 </select>
                             </div>
                         </div>
@@ -378,7 +374,7 @@
             "fnServerParams": function(aoData) {
                 aoData.push({
                     "name": "tes",
-                    "value": $('#pilih-tes').val()
+                    "value": $('#pilih-tes').val() == null ? "semua" : $('#pilih-tes').val()
                 });
                 aoData.push({
                     "name": "group",
@@ -402,9 +398,51 @@
                 });
                 aoData.push({
                     "name": "peserta",
-                    "value": $('#pilih-peserta').val()
+                    "value": $('#pilih-peserta').val() == null ? "semua" : $('#pilih-peserta').val()
                 });
             }
         });
+    });
+
+    $("#pilih-tes").select2({
+        minimumInputLength: 3,
+        allowClear: true,
+        placeholder: "Pilih Tes",
+        ajax: {
+            dataType: "JSON",
+            url: "<?= site_url('manager/tes_daftar/get_test') ?>",
+            delay: 800,
+            data: function(params) {
+                return {
+                    search: params.term
+                }
+            },
+            processResults: function(data, page) {
+                return {
+                    results: data
+                };
+            }
+        }
+    });
+
+    $("#pilih-peserta").select2({
+        minimumInputLength: 3,
+        allowClear: true,
+        placeholder: "Pilih Peserta",
+        ajax: {
+            dataType: "JSON",
+            url: "<?= site_url('manager/peserta_daftar/get_peserta') ?>",
+            delay: 800,
+            data: function(params) {
+                return {
+                    search: params.term
+                }
+            },
+            processResults: function(data, page) {
+                return {
+                    results: data
+                };
+            }
+        }
     });
 </script>

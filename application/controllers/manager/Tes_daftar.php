@@ -15,6 +15,7 @@ class Tes_daftar extends Member_Controller
 	{
 		parent::__construct();
 		$this->load->model('cbt_tes_model');
+		$this->load->model('cbt_tes_user_model');
 
 		parent::cek_akses($this->kode_menu);
 	}
@@ -230,5 +231,25 @@ class Tes_daftar extends Member_Controller
 		}
 
 		return $sort_dir;
+	}
+
+	public function get_test()
+	{
+		$search = $_GET['search'];
+		$sql = $this->cbt_tes_user_model->get_by_group($search);
+
+		if ($sql->num_rows() > 0) {
+			$list = array();
+			$key = 0;
+
+			$query_tes = $sql->result();
+			foreach ($query_tes as $row) {
+				$list[$key]['id'] = $row->tes_id;
+				$list[$key]['text'] = $row->tes_nama;
+				$key++;
+			}
+
+			echo json_encode($list);
+		}
 	}
 }

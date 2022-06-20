@@ -127,8 +127,12 @@ class Cbt_tes_user_model extends CI_Model
         return $this->db->get();
     }
 
-    function get_by_group()
+    function get_by_group($search = null)
     {
+        if (!empty($search)) {
+            $this->db->like('cbt_tes.tes_nama', $search, 'both');
+        }
+
         $this->db->from($this->table)
             ->join('cbt_tes', 'cbt_tes_user.tesuser_tes_id = cbt_tes.tes_id')
             ->order_by('tes_begin_time', 'DESC')

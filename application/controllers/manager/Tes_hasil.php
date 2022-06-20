@@ -51,26 +51,6 @@ class Tes_hasil extends Member_Controller
 		}
 		$data['select_group'] = $select;
 
-		$query_tes = $this->cbt_tes_user_model->get_by_group();
-		$select = '<option value="semua">Semua Tes</option>';
-		if ($query_tes->num_rows() > 0) {
-			$query_tes = $query_tes->result();
-			foreach ($query_tes as $temp) {
-				$select = $select . '<option value="' . $temp->tes_id . '">' . $temp->tes_nama . '</option>';
-			}
-		}
-		$data['select_tes'] = $select;
-
-		$query_peserta = $this->cbt_user_model->get_user();
-		$select = '<option value="semua">Semua Peserta</option>';
-		if ($query_peserta->num_rows() > 0) {
-			$query_peserta = $query_peserta->result();
-			foreach ($query_peserta as $temp) {
-				$select = $select . '<option value="' . $temp->user_id . '">' . $temp->user_name . '</option>';
-			}
-		}
-		$data['select_peserta'] = $select;
-
 		$this->template->display_admin($this->kelompok . '/tes_hasil_view', 'Hasil Tes', $data);
 	}
 

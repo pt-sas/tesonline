@@ -241,8 +241,12 @@ class Cbt_user_model extends CI_Model
         return $this->db->get();
     }
 
-    function get_user()
+    function get_user($search = null)
     {
+        if (!empty($search)) {
+            $this->db->like('user_name', $search, 'both');
+        }
+
         $this->db->from($this->table)
             ->order_by('user_name', 'ASC');
         return $this->db->get();

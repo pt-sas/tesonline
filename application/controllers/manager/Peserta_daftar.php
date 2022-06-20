@@ -288,4 +288,24 @@ class Peserta_daftar extends Member_Controller
 
 		return $sort_dir;
 	}
+
+	public function get_peserta()
+	{
+		$search = $_GET['search'];
+		$sql = $this->cbt_user_model->get_user($search);
+
+		if ($sql->num_rows() > 0) {
+			$list = array();
+			$key = 0;
+
+			$query_tes = $sql->result();
+			foreach ($query_tes as $row) {
+				$list[$key]['id'] = $row->user_id;
+				$list[$key]['text'] = $row->user_name;
+				$key++;
+			}
+
+			echo json_encode($list);
+		}
+	}
 }
