@@ -86,7 +86,7 @@ class Tes_rekap_hasil extends Member_Controller
                 $query_tes = $query_tes->result();
                 $query_user = $query_user->result();
 
-                $kolom = 5;
+                $kolom = 6;
                 foreach ($query_tes as $tes) {
                     $worksheet->setCellValueByColumnAndRow($kolom, 8, $tes->tes_nama);
                     // Otomatis tinggi kolom
@@ -103,13 +103,16 @@ class Tes_rekap_hasil extends Member_Controller
                     $worksheet->setCellValueByColumnAndRow(4, $row, $user->user_detail);
                     $worksheet->setCellValueByColumnAndRow(5, $row, $user->total);
 
-                    $worksheet->getStyle('D9:D' . $worksheet->getHighestRow())
+                    $worksheet->getStyle('E9:E' . $worksheet->getHighestRow())
                         ->getAlignment()
                         ->setWrapText(true);
                     $worksheet->getStyle('B9:B' . $worksheet->getHighestRow())
                         ->getAlignment()
                         ->setVertical(PHPExcel_Style_Alignment::VERTICAL_CENTER);
                     $worksheet->getStyle('C9:C' . $worksheet->getHighestRow())
+                        ->getAlignment()
+                        ->setVertical(PHPExcel_Style_Alignment::VERTICAL_CENTER);
+                    $worksheet->getStyle('D9:D' . $worksheet->getHighestRow())
                         ->getAlignment()
                         ->setVertical(PHPExcel_Style_Alignment::VERTICAL_CENTER);
 
