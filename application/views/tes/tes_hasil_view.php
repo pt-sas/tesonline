@@ -122,7 +122,8 @@
                                 <th>Waktu</th>
                                 <th>Nama Tes</th>
                                 <th>Group</th>
-                                <th class="all">Nama User</th>
+                                <th class="all">Username</th>
+                                <th class="all">Nama Lengkap</th>
                                 <th>Poin</th>
                                 <th>Jawab / Belum Jawab</th>
                                 <th>Status</th>
@@ -131,6 +132,7 @@
                         </thead>
                         <tbody>
                             <tr>
+                                <td> </td>
                                 <td> </td>
                                 <td> </td>
                                 <td> </td>
@@ -327,6 +329,10 @@
                     "bSearchable": false,
                     "bSortable": false,
                     "sWidth": "100px"
+                },
+                {
+                    "bSearchable": false,
+                    "bSortable": false
                 },
                 {
                     "bSearchable": false,

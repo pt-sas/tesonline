@@ -149,14 +149,15 @@ class Tes_hasil extends Member_Controller
 
 					$worksheet->setCellValueByColumnAndRow(0, $row, ($row - 1));
 					$worksheet->setCellValueByColumnAndRow(1, $row, $temp->tes_nama);
-					$worksheet->setCellValueByColumnAndRow(2, $row, stripslashes($temp->user_firstname));
-					$worksheet->setCellValueByColumnAndRow(3, $row, $temp->tes_duration_time . ' menit');
-					$worksheet->setCellValueByColumnAndRow(4, $row, $temp->tesuser_creation_time);
-					$worksheet->setCellValueByColumnAndRow(5, $row, $temp->tesuser_end_time);
-					$worksheet->setCellValueByColumnAndRow(6, $row, $temp->grup_nama);
-					$worksheet->setCellValueByColumnAndRow(7, $row, $jawab->hasil . '  /  ' . $notJawab->hasil);
-					$worksheet->setCellValueByColumnAndRow(8, $row, ($nilai->total_soal - $nilai->jawaban_salah) . '  /  ' . $nilai->total_soal);
-					$worksheet->setCellValueByColumnAndRow(9, $row, (int)$temp->nilai);
+					$worksheet->setCellValueByColumnAndRow(2, $row, stripslashes($temp->user_name));
+					$worksheet->setCellValueByColumnAndRow(3, $row, stripslashes($temp->user_firstname));
+					$worksheet->setCellValueByColumnAndRow(4, $row, $temp->tes_duration_time . ' menit');
+					$worksheet->setCellValueByColumnAndRow(5, $row, $temp->tesuser_creation_time);
+					$worksheet->setCellValueByColumnAndRow(6, $row, $temp->tesuser_end_time);
+					$worksheet->setCellValueByColumnAndRow(7, $row, $temp->grup_nama);
+					$worksheet->setCellValueByColumnAndRow(8, $row, $jawab->hasil . '  /  ' . $notJawab->hasil);
+					$worksheet->setCellValueByColumnAndRow(9, $row, ($nilai->total_soal - $nilai->jawaban_salah) . '  /  ' . $nilai->total_soal);
+					$worksheet->setCellValueByColumnAndRow(10, $row, (int)$temp->nilai);
 
 					$row++;
 				}
@@ -243,8 +244,10 @@ class Tes_hasil extends Member_Controller
 			$record[] = $temp->tes_nama;
 			$record[] = $temp->grup_nama;
 			if (empty($temp->tesuser_id)) {
+				$record[] = '<b>' . stripslashes($temp->user_name) . '</b>';
 				$record[] = '<b>' . stripslashes($temp->user_firstname) . '</b>';
 			} else {
+				$record[] = '<a href="#" title="Klik untuk mengetahui Detail Tes" onclick="detail_tes(\'' . $temp->tesuser_id . '\')"><b>' . stripslashes($temp->user_name) . '</b></a>';
 				$record[] = '<a href="#" title="Klik untuk mengetahui Detail Tes" onclick="detail_tes(\'' . $temp->tesuser_id . '\')"><b>' . stripslashes($temp->user_firstname) . '</b></a>';
 			}
 			if (empty($temp->nilai)) {
