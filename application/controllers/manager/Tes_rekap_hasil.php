@@ -97,10 +97,11 @@ class Tes_rekap_hasil extends Member_Controller
                 $row = 9;
                 foreach ($query_user as $user) {
                     $worksheet->setCellValueByColumnAndRow(0, $row, ($row - 8));
-                    $worksheet->setCellValueByColumnAndRow(1, $row, $user->user_firstname);
-                    $worksheet->setCellValueByColumnAndRow(2, $row, $nama_grup);
-                    $worksheet->setCellValueByColumnAndRow(3, $row, $user->user_detail);
-                    $worksheet->setCellValueByColumnAndRow(4, $row, $user->total);
+                    $worksheet->setCellValueByColumnAndRow(1, $row, $user->user_name);
+                    $worksheet->setCellValueByColumnAndRow(2, $row, $user->user_firstname);
+                    $worksheet->setCellValueByColumnAndRow(3, $row, $nama_grup);
+                    $worksheet->setCellValueByColumnAndRow(4, $row, $user->user_detail);
+                    $worksheet->setCellValueByColumnAndRow(5, $row, $user->total);
 
                     $worksheet->getStyle('D9:D' . $worksheet->getHighestRow())
                         ->getAlignment()
@@ -112,7 +113,7 @@ class Tes_rekap_hasil extends Member_Controller
                         ->getAlignment()
                         ->setVertical(PHPExcel_Style_Alignment::VERTICAL_CENTER);
 
-                    $kolom = 5;
+                    $kolom = 6;
                     foreach ($query_tes as $tes) {
                         // Mendapatkan nilai tiap Tes untuk setiap siswa
                         $query_nilai = $this->cbt_tes_user_model->get_nilai_by_tes_user($tes->tes_id, $user->user_id);
