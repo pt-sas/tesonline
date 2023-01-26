@@ -99,7 +99,7 @@ class Peserta_import extends Member_Controller
                             $pesan = $pesan . $kolom1 . ' - ' . $kolom3 . ' sudah digunakan <br>';
                             $jmldataerror++;
                         } else {
-                            $data['user_name'] = ucwords(strtolower($kolom1));
+                            $data['user_name'] = ucwords(strtolower(trim($kolom1)));
                             $data['user_password'] = $kolom2;
                             $data['user_email'] = $kolom4;
                             $data['user_firstname'] = ucwords(strtolower($kolom3));
