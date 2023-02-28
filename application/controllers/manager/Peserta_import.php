@@ -96,8 +96,15 @@ class Peserta_import extends Member_Controller
                 if ($kosong == 0) {
                     if ($this->cbt_user_grup_model->count_by_kolom('grup_nama', $kolom5)->row()->hasil > 0) {
                         if ($this->cbt_user_model->count_by_kolom('user_name', $kolom1)->row()->hasil > 0) {
-                            $pesan = $pesan . $kolom1 . ' - ' . $kolom3 . ' sudah digunakan <br>';
-                            $jmldataerror++;
+                            $data['user_password'] = $kolom2;
+                            $data['user_email'] = $kolom4;
+                            $data['user_firstname'] = ucwords(strtolower($kolom3));
+                            $data['user_grup_id'] = $this->cbt_user_grup_model->get_by_kolom_limit('grup_nama', $kolom5, 1)->row()->grup_id;
+                            $data['user_detail'] = $kolom6;
+                            $data['isactive'] = "Y";
+
+                            $this->cbt_user_model->update('user_name', $kolom1, $data);
+                            $jmldatasukses++;
                         } else {
                             $data['user_name'] = ucwords(strtolower(trim($kolom1)));
                             $data['user_password'] = $kolom2;
