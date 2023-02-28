@@ -95,7 +95,10 @@ class Peserta_import extends Member_Controller
 
                 if ($kosong == 0) {
                     if ($this->cbt_user_grup_model->count_by_kolom('grup_nama', $kolom5)->row()->hasil > 0) {
-                        if ($this->cbt_user_model->count_by_kolom('user_name', $kolom1)->row()->hasil > 0) {
+                        $username = ucwords(strtolower(trim($kolom1)));
+
+                        if ($this->cbt_user_model->count_by_kolom('user_name', $username)->row()->hasil > 0) {
+                            $data['user_name'] = $username;
                             $data['user_password'] = $kolom2;
                             $data['user_email'] = $kolom4;
                             $data['user_firstname'] = ucwords(strtolower($kolom3));
@@ -103,10 +106,10 @@ class Peserta_import extends Member_Controller
                             $data['user_detail'] = $kolom6;
                             $data['isactive'] = "Y";
 
-                            $this->cbt_user_model->update('user_name', $kolom1, $data);
+                            $this->cbt_user_model->update('user_name', $username, $data);
                             $jmldatasukses++;
                         } else {
-                            $data['user_name'] = ucwords(strtolower(trim($kolom1)));
+                            $data['user_name'] = $username;
                             $data['user_password'] = $kolom2;
                             $data['user_email'] = $kolom4;
                             $data['user_firstname'] = ucwords(strtolower($kolom3));
